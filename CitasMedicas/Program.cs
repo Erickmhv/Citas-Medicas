@@ -18,7 +18,6 @@ namespace CitasMedicas
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginView());
 
-            //Prueba De cambio
         }
     }
 }
