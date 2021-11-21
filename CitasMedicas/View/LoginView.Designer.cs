@@ -1,4 +1,6 @@
 ﻿
+using CitasMedicas.Utils;
+
 namespace CitasMedicas
 {
     partial class LoginView

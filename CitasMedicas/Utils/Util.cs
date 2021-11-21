@@ -1,12 +1,73 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CitasMedicas.Utils
 {
     public class Util
     {
+        public Timer timer1;
+
+        public void CreateTimer(bool cerrado, Form form)
+        {
+            timer1 = null;
+
+            if (timer1 == null)
+                timer1 = new Timer();
+
+            timer1.Tick += (sender, e) => timer1_CreateTick(new TimerEventArgs(cerrado, form));
+
+            if (!cerrado)
+                form.Opacity = 0;
+
+            timer1.Start();
+        }
+
+        public class TimerEventArgs : EventArgs
+        {
+            public TimerEventArgs(bool cerrar, Form form)
+            {
+                this.Cerrar = cerrar;
+                this.Form1 = form;
+            }
+
+            public bool Cerrar { get; private set; }
+            public Form Form1 { get; private set; }
+        }
+
+        //public event EventHandler<TimerEventArgs> ClosingTimer;
+
+        private void timer1_CreateTick(TimerEventArgs e)
+        {
+            if (e.Cerrar)
+            {
+                if (e.Form1.Opacity > 0.0)
+                {
+                    e.Form1.Opacity -= 0.075;
+                }
+                else
+                {
+                    timer1.Stop();
+                    e.Form1.Close();
+                }
+            }
+            else
+            {
+                if (e.Form1.Opacity < 1.0)
+                {
+                    e.Form1.Opacity += 0.075;
+                }
+                else
+                {
+                    timer1.Stop();
+                }
+            }
+        }
+
+
         #region Color
-        private Color primaryColor = Color.FromArgb(41, 128, 185);
-        public Color PrimaryColor
+        private static Color primaryColor = Color.FromArgb(41, 128, 185);
+        public static Color PrimaryColor
         {
             get
             {
@@ -18,8 +79,8 @@ namespace CitasMedicas.Utils
             }
         }
 
-        private Color secondaryColor = Color.FromArgb(255, 255, 255);
-        public Color SecondaryColor
+        private static Color secondaryColor = Color.FromArgb(255, 255, 255);
+        public static Color SecondaryColor
         {
             get
             {
@@ -29,10 +90,10 @@ namespace CitasMedicas.Utils
             {
                 secondaryColor = value;
             }
-        }       
-        
-        private Color thirdColor = SystemColors.Control;
-        public Color ThirdColor
+        }
+
+        private static Color thirdColor = SystemColors.Control;
+        public static Color ThirdColor
         {
             get
             {
@@ -48,78 +109,12 @@ namespace CitasMedicas.Utils
 
         #region Font
 
-        public static FontFamily PrimaryFont = new FontFamily("CENTURY GOTHIC");
-        public static FontFamily SecondaryFont = new FontFamily("VERDANA");
+        public static Font PrimaryFont(int size) => new Font(new FontFamily("CENTURY GOTHIC"), size, FontStyle.Regular, GraphicsUnit.Pixel);
 
-        private Font primaryFont16 = new Font(
-           PrimaryFont,
-           16,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
+        public static Font SecondaryFont(int size) => new Font(new FontFamily("VERDANA"), size, FontStyle.Bold, GraphicsUnit.Pixel);
 
-        public Font PrimaryFont16
-        {
-            get
-            {
-                return primaryFont16;
-            }
-            set
-            {
-                primaryFont16 = value;
-            }
-        }        
-        
-        private Font primaryFont12 = new Font(
-           PrimaryFont,
-           12,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
-
-        public Font PrimaryFont12
-        {
-            get
-            {
-                return primaryFont12;
-            }
-            set
-            {
-                primaryFont12 = value;
-            }
-        }
-
-        private Font primaryFont10 = new Font(
-           PrimaryFont,
-           10,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
-        public Font PrimaryFont10
-        {
-            get
-            {
-                return primaryFont10;
-            }
-            set
-            {
-                primaryFont10 = value;
-            }
-        }
-
-        private Font secondaryFont16 = new Font(
-      SecondaryFont,
-      16,
-      FontStyle.Bold,
-      GraphicsUnit.Pixel);
-        public Font SecondaryFont16
-        {
-            get
-            {
-                return secondaryFont16;
-            }
-            set
-            {
-                secondaryFont16 = value;
-            }
-        }
         #endregion
+
     }
+
 }

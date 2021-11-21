@@ -71,6 +71,6 @@ namespace CitasMedicas.View
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dgv;
+        public System.Windows.Forms.DataGridView dgv;
     }
 }

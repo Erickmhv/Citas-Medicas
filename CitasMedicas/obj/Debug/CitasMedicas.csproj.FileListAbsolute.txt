@@ -1,7 +1,6 @@
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe.config
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.pdb
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.AssemblyReference.cache
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.Properties.Resources.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.GenerateResource.cache
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CoreCompileInputs.cache
@@ -38,3 +37,11 @@ C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\e
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Pdf.v21.1.Core.resources.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Pdf.v21.1.Core.resources.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.ListView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.UsuarioDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.CitaDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.AssemblyReference.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.HorarioDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.EspecialidadDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MedicoDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.PacienteDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.PagoDetailView.resources
