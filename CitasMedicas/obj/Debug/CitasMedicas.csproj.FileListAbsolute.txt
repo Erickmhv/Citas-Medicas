@@ -1,19 +1,16 @@
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe.config
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.pdb
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.Properties.Resources.resources
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.GenerateResource.cache
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CoreCompileInputs.cache
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.exe
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.pdb
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.LoginView.resources
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MainView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.dll
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Core.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Drawing.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.Desktop.v21.1.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.v21.1.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Printing.v21.1.Core.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Utils.v21.1.xml
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.xml
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Core.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Drawing.xml
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\de\DevExpress.Data.v21.1.resources.dll
@@ -32,57 +29,22 @@ C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\d
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\es\DevExpress.Pdf.v21.1.Core.resources.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Pdf.v21.1.Core.resources.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Pdf.v21.1.Core.resources.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.ListView.resources
-<<<<<<< HEAD
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.UsuarioDetailView.resources
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.CitaDetailView.resources
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.AssemblyReference.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.SuggestedBindingRedirects.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.Properties.Resources.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.HorarioDetailView.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.EspecialidadDetailView.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MedicoDetailView.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.PacienteDetailView.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.PagoDetailView.resources
-=======
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe.config
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.exe
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\CitasMedicas.pdb
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Core.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Drawing.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.Desktop.v21.1.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.v21.1.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Printing.v21.1.Core.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Utils.v21.1.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Core.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Drawing.xml
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\de\DevExpress.Data.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\es\DevExpress.Data.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Data.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Data.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\de\DevExpress.Printing.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\es\DevExpress.Printing.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Printing.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Printing.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\de\DevExpress.Utils.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\es\DevExpress.Utils.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Utils.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Utils.v21.1.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\de\DevExpress.Pdf.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\es\DevExpress.Pdf.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ja\DevExpress.Pdf.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\ru\DevExpress.Pdf.v21.1.Core.resources.dll
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.AssemblyReference.cache
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.Properties.Resources.resources
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.ListView.resources
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.LoginView.resources
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MainView.resources
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.GenerateResource.cache
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CoreCompileInputs.cache
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.exe
-C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.pdb
->>>>>>> 90fb8fddaa443f1b93cfe2c1420377776ff2b5e8
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.SuggestedBindingRedirects.cache
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.xml
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.CitaDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.UsuarioDetailView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.ListView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.LoginView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MainView.resources
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.GenerateResource.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CoreCompileInputs.cache
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CopyComplete
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.exe
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.pdb
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.AssemblyReference.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.DetailView.resources
