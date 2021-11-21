@@ -10,9 +10,9 @@ namespace CitasMedicas.Utils
 
         public void CreateTimer(bool cerrado, Form form)
         {
-            timer1 = null;
+            //timer1 = null;
 
-            if (timer1 == null)
+            //if (timer1 == null)
                 timer1 = new Timer();
 
             timer1.Tick += (sender, e) => timer1_CreateTick(new TimerEventArgs(cerrado, form));

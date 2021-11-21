@@ -8,10 +8,6 @@ C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\C
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.pdb
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.LoginView.resources
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.View.MainView.resources
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.Desktop.v21.1.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.v21.1.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Printing.v21.1.Core.dll
-C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Utils.v21.1.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Core.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Pdf.v21.1.Drawing.dll
 C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\DevExpress.Data.Desktop.v21.1.xml
@@ -84,3 +80,9 @@ C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\
 C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.exe
 C:\Users\Dilenny Brito\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.pdb
 >>>>>>> 90fb8fddaa443f1b93cfe2c1420377776ff2b5e8
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.SuggestedBindingRedirects.cache
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.dll
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.xml
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LEGION\Desktop\FinalProgramacion\Citas-Medicas\CitasMedicas\obj\Debug\CitasMedicas.csproj.CopyComplete
