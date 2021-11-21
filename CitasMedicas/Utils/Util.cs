@@ -6,48 +6,46 @@ namespace CitasMedicas.Utils
 {
     public class Util
     {
-        public Timer timer1;
 
-        public void CreateTimer(bool cerrado, Form form)
+        public static void CreateTimer(bool cerrado, Form form, Timer timer1)
         {
-            //timer1 = null;
-
-            //if (timer1 == null)
-                timer1 = new Timer();
-
-            timer1.Tick += (sender, e) => timer1_CreateTick(new TimerEventArgs(cerrado, form));
+            timer1.Tick += (sender, e) => timer1_CreateTick(new TimerEventArgs(cerrado, form, timer1));
 
             if (!cerrado)
-                form.Opacity = 0;
+                form.Opacity = 0.0;
 
             timer1.Start();
         }
 
         public class TimerEventArgs : EventArgs
         {
-            public TimerEventArgs(bool cerrar, Form form)
+            public TimerEventArgs(bool cerrar, Form form, Timer timer1)
             {
                 this.Cerrar = cerrar;
                 this.Form1 = form;
+                this.Timer1 = timer1;
             }
 
             public bool Cerrar { get; private set; }
             public Form Form1 { get; private set; }
+            public Timer Timer1 { get; private set; }
         }
 
         //public event EventHandler<TimerEventArgs> ClosingTimer;
 
-        private void timer1_CreateTick(TimerEventArgs e)
+        private static void timer1_CreateTick(TimerEventArgs e)
         {
+            e.Form1.Opacity = Math.Round(e.Form1.Opacity, 2);
+
             if (e.Cerrar)
             {
                 if (e.Form1.Opacity > 0.0)
                 {
-                    e.Form1.Opacity -= 0.075;
+                    e.Form1.Opacity -= 0.1;
                 }
                 else
                 {
-                    timer1.Stop();
+                    e.Timer1.Stop();
                     e.Form1.Close();
                 }
             }
@@ -55,15 +53,14 @@ namespace CitasMedicas.Utils
             {
                 if (e.Form1.Opacity < 1.0)
                 {
-                    e.Form1.Opacity += 0.075;
+                    e.Form1.Opacity += 0.1;
                 }
                 else
                 {
-                    timer1.Stop();
+                    e.Timer1.Stop();
                 }
             }
         }
-
 
         #region Color
         private static Color primaryColor = Color.FromArgb(41, 128, 185);

@@ -26,12 +26,12 @@ namespace CitasMedicas.View
 
             btnNuevo.Font = Util.SecondaryFont(12);
             btnNuevo.ForeColor = Util.PrimaryColor;
-            btnNuevo.BackColor = Util.SecondaryColor;      
-            
+            btnNuevo.BackColor = Util.SecondaryColor;
+
             btnEditar.Font = Util.SecondaryFont(12);
             btnEditar.ForeColor = Util.PrimaryColor;
-            btnEditar.BackColor = Util.SecondaryColor;      
-            
+            btnEditar.BackColor = Util.SecondaryColor;
+
             btnEliminar.Font = Util.SecondaryFont(12);
             btnEliminar.ForeColor = Util.PrimaryColor;
             btnEliminar.BackColor = Util.SecondaryColor;
@@ -97,7 +97,7 @@ namespace CitasMedicas.View
             new LoginView().Show();
         }
 
-        public void Cargar(List<object> t, string nombre)
+        public void CargarListView(List<object> t, string nombre)
         {
             if (pnlMain.Controls.Count > 0)
                 pnlMain.Controls.RemoveAt(0);
@@ -112,46 +112,57 @@ namespace CitasMedicas.View
 
         }
 
+        public void CargarDetailView(Form listView)
+        {
+            var detailView = new DetailView();
+            listView.TopLevel = false;
+            listView.AutoScroll = true;
+            detailView.pnl.Controls.Add(listView);
+
+            listView.Visible = true;
+            detailView.Show();
+        }
+
         private void btnCita_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Cita" } };
-            Cargar(list, "Cita");
+            CargarListView(list, "Cita");
         }
 
         private void btnPago_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Pago" } };
-            Cargar(list, "Pago");
+            CargarListView(list, "Pago");
         }
 
         private void btnPaciente_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Paciente" } };
-            Cargar(list, "Paciente");
+            CargarListView(list, "Paciente");
         }
 
         private void btnMedico_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Medico" } };
-            Cargar(list, "Medico");
+            CargarListView(list, "Medico");
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Usuario" } };
-            Cargar(list, "Usuario");
+            CargarListView(list, "Usuario");
         }
 
         private void btnEspecialidad_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Especialidad" } };
-            Cargar(list, "Especialidad");
+            CargarListView(list, "Especialidad");
         }
 
         private void btnHorario_Click(object sender, EventArgs e)
         {
             List<object> list = new List<object>() { new Prueba { Nombre = "Horario" } };
-            Cargar(list, "Horario");
+            CargarListView(list, "Horario");
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -163,31 +174,31 @@ namespace CitasMedicas.View
                     switch (p.Name)
                     {
                         case "Cita":
-                            new CitaDetailView().Show();
+                            CargarDetailView(new CitaDetailView());
                             break;
 
                         case "Pago":
-                            new PagoDetailView().Show();
+                            CargarDetailView(new PagoDetailView());
                             break;
 
                         case "Paciente":
-                            new PacienteDetailView().Show();
-                            break; 
-                        
+                            CargarDetailView(new PacienteDetailView());
+                            break;
+
                         case "Medico":
-                            new MedicoDetailView().Show();
+                            CargarDetailView(new MedicoDetailView());
                             break;
 
                         case "Usuario":
-                            new UsuarioDetailView().Show();
+                            CargarDetailView(new UsuarioDetailView());
                             break;
 
                         case "Especialidad":
-                            new EspecialidadDetailView().Show();
+                            CargarDetailView(new EspecialidadDetailView());
                             break;
-                       
+
                         case "Horario":
-                            new HorarioDetailView().Show();
+                            CargarDetailView(new HorarioDetailView());
                             break;
 
                         default:

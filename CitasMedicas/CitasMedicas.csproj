@@ -66,6 +66,12 @@
   <ItemGroup>
     <Compile Include="Datos\Context\AppDbContext.cs" />
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="View\DetailView\DetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\DetailView.Designer.cs">
+      <DependentUpon>DetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DetailView\HorarioDetailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\DetailView\DetailView.resx">
+      <DependentUpon>DetailView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DetailView\HorarioDetailView.resx">
       <DependentUpon>HorarioDetailView.cs</DependentUpon>
     </EmbeddedResource>
