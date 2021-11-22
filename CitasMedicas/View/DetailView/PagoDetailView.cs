@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace CitasMedicas.View
 {
-    public partial class ListView : Form
+    public partial class PagoDetailView : Form
     {
-        public ListView()
+        public PagoDetailView()
         {
             InitializeComponent();
+
         }
     }
 }

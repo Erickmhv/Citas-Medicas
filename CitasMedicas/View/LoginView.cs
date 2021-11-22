@@ -1,20 +1,15 @@
 ﻿using CitasMedicas.Utils;
 using CitasMedicas.View;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CitasMedicas
 {
     public partial class LoginView : Form
     {
-        public Util u = new Util();
         public LoginView()
         {
             InitializeComponent();
@@ -30,22 +25,22 @@ namespace CitasMedicas
             FocusUser();
         }
 
-        private void FocusUser() 
+        private void FocusUser()
         {
             ActiveControl = txtUser;
-            txtUser.BackColor = u.SecondaryColor; 
-            pnlUser.BackColor = u.SecondaryColor;
-            txtPassword.BackColor = u.ThirdColor; 
-            pnlPassword.BackColor = u.ThirdColor;
-        }   
-        
-        private void FocusPassword() 
+            txtUser.BackColor = Util.SecondaryColor;
+            pnlUser.BackColor = Util.SecondaryColor;
+            txtPassword.BackColor = Util.ThirdColor;
+            pnlPassword.BackColor = Util.ThirdColor;
+        }
+
+        private void FocusPassword()
         {
             ActiveControl = txtPassword;
-            txtUser.BackColor = u.ThirdColor;
-            pnlUser.BackColor = u.ThirdColor;
-            txtPassword.BackColor = u.SecondaryColor;
-            pnlPassword.BackColor = u.SecondaryColor;
+            txtUser.BackColor = Util.ThirdColor;
+            pnlUser.BackColor = Util.ThirdColor;
+            txtPassword.BackColor = Util.SecondaryColor;
+            pnlPassword.BackColor = Util.SecondaryColor;
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
@@ -61,44 +56,48 @@ namespace CitasMedicas
 
         private void CargarDiseno()
         {
-            pnlBienvenido.BackColor = u.PrimaryColor;
+            pbLogin.Image = Util.CambiarImagenColor("Login.png", Util.SecondaryColor);
+            pbUser.Image = Util.CambiarImagenColor("User.png", Util.PrimaryColor);
+            pbPassword.Image = Util.CambiarImagenColor("Password.png", Util.PrimaryColor);
 
-            lblBienvenido.Font = u.PrimaryFont16;
-            lblBienvenido.ForeColor = u.SecondaryColor;
+            pnlBienvenido.BackColor = Util.PrimaryColor;
 
-            lblCita.Font = u.PrimaryFont16;
-            lblCita.ForeColor = u.SecondaryColor;
+            lblBienvenido.Font = Util.PrimaryFont(16);
+            lblBienvenido.ForeColor = Util.SecondaryColor;
 
-            lblDesarrollado.Font = u.PrimaryFont16;
-            lblDesarrollado.ForeColor = u.SecondaryColor;
+            lblCita.Font = Util.PrimaryFont(16);
+            lblCita.ForeColor = Util.SecondaryColor;
 
-            lblErick.Font = u.PrimaryFont10;
-            lblErick.ForeColor = u.SecondaryColor;
+            lblDesarrollado.Font = Util.PrimaryFont(16);
+            lblDesarrollado.ForeColor = Util.SecondaryColor;
 
-            lblDilenny.Font = u.PrimaryFont10;
-            lblDilenny.ForeColor = u.SecondaryColor;
+            lblErick.Font = Util.PrimaryFont(10);
+            lblErick.ForeColor = Util.SecondaryColor;
 
-            btnX.Font = u.SecondaryFont16;
-            btnX.ForeColor = u.PrimaryColor;
+            lblDilenny.Font = Util.PrimaryFont(10);
+            lblDilenny.ForeColor = Util.SecondaryColor;
 
-            lblLogin.ForeColor = u.PrimaryColor;
-            lblLogin.Font = u.PrimaryFont16;
+            btnX.Font = Util.SecondaryFont(16);
+            btnX.ForeColor = Util.PrimaryColor;
 
-            pnlUser.BackColor = u.ThirdColor;
+            lblLogin.ForeColor = Util.PrimaryColor;
+            lblLogin.Font = Util.PrimaryFont(16);
 
-            pnlPassword.BackColor = u.ThirdColor;
+            pnlUser.BackColor = Util.ThirdColor;
 
-            txtUser.Font = u.PrimaryFont10;
-            txtUser.ForeColor = u.PrimaryColor;
-            txtUser.BackColor = u.ThirdColor;
+            pnlPassword.BackColor = Util.ThirdColor;
 
-            txtPassword.Font = u.PrimaryFont10;
-            txtPassword.ForeColor = u.PrimaryColor;
-            txtPassword.BackColor = u.ThirdColor;
+            txtUser.Font = Util.PrimaryFont(10);
+            txtUser.ForeColor = Util.PrimaryColor;
+            txtUser.BackColor = Util.ThirdColor;
 
-            btnLogin.BackColor = u.PrimaryColor;
-            btnLogin.ForeColor = u.SecondaryColor;
-            btnLogin.Font = u.PrimaryFont12;
+            txtPassword.Font = Util.PrimaryFont(10);
+            txtPassword.ForeColor = Util.PrimaryColor;
+            txtPassword.BackColor = Util.ThirdColor;
+
+            btnLogin.BackColor = Util.PrimaryColor;
+            btnLogin.ForeColor = Util.SecondaryColor;
+            btnLogin.Font = Util.PrimaryFont(12);
         }
 
         private void pnlUser_Click(object sender, EventArgs e)
@@ -115,7 +114,6 @@ namespace CitasMedicas
         {
             Hide();
             new MainView().Show();
-
         }
     }
 }

@@ -1,12 +1,112 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace CitasMedicas.Utils
 {
     public class Util
     {
+        public static Image CambiarImagenColor(string imagen, Color c)
+        {
+            Bitmap bmp = null;
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var resourceName = assembly.GetManifestResourceNames().FirstOrDefault(x => x.Contains(imagen));
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream != null) bmp = (Bitmap)Image.FromStream(stream);
+            }
+            
+            if (bmp == null)
+                return null;
+
+            int width = bmp.Width;
+            int height = bmp.Height;
+
+            Bitmap image = new Bitmap(bmp);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color p = bmp.GetPixel(x, y);
+
+                    int a = p.A;
+                    int r = p.R;
+                    int g = p.G;
+                    int b = p.B;
+
+                    image.SetPixel(x, y, Color.FromArgb(a, c.R, c.G, c.B));
+
+                }
+            }
+
+            return image;
+
+        }
+
+
+        public static void CreateTimer(bool cerrado, Form form, Timer timer1)
+        {
+            timer1.Tick += (sender, e) => timer1_CreateTick(new TimerEventArgs(cerrado, form, timer1));
+
+            if (!cerrado)
+                form.Opacity = 0.0;
+
+            timer1.Start();
+        }
+
+        public class TimerEventArgs : EventArgs
+        {
+            public TimerEventArgs(bool cerrar, Form form, Timer timer1)
+            {
+                this.Cerrar = cerrar;
+                this.Form1 = form;
+                this.Timer1 = timer1;
+            }
+
+            public bool Cerrar { get; private set; }
+            public Form Form1 { get; private set; }
+            public Timer Timer1 { get; private set; }
+        }
+
+        //public event EventHandler<TimerEventArgs> ClosingTimer;
+
+        private static void timer1_CreateTick(TimerEventArgs e)
+        {
+            e.Form1.Opacity = Math.Round(e.Form1.Opacity, 2);
+
+            if (e.Cerrar)
+            {
+                if (e.Form1.Opacity > 0.0)
+                {
+                    e.Form1.Opacity -= 0.1;
+                }
+                else
+                {
+                    e.Timer1.Stop();
+                    e.Form1.Close();
+                }
+            }
+            else
+            {
+                if (e.Form1.Opacity < 1.0)
+                {
+                    e.Form1.Opacity += 0.1;
+                }
+                else
+                {
+                    e.Timer1.Stop();
+                }
+            }
+        }
+
         #region Color
-        private Color primaryColor = Color.FromArgb(41, 128, 185);
-        public Color PrimaryColor
+        private static Color primaryColor = Color.FromArgb(41, 128, 185);
+        public static Color PrimaryColor
         {
             get
             {
@@ -18,8 +118,8 @@ namespace CitasMedicas.Utils
             }
         }
 
-        private Color secondaryColor = Color.FromArgb(255, 255, 255);
-        public Color SecondaryColor
+        private static Color secondaryColor = Color.FromArgb(255, 255, 255);
+        public static Color SecondaryColor
         {
             get
             {
@@ -29,10 +129,10 @@ namespace CitasMedicas.Utils
             {
                 secondaryColor = value;
             }
-        }       
-        
-        private Color thirdColor = SystemColors.Control;
-        public Color ThirdColor
+        }
+
+        private static Color thirdColor = SystemColors.Control;
+        public static Color ThirdColor
         {
             get
             {
@@ -48,78 +148,12 @@ namespace CitasMedicas.Utils
 
         #region Font
 
-        public static FontFamily PrimaryFont = new FontFamily("CENTURY GOTHIC");
-        public static FontFamily SecondaryFont = new FontFamily("VERDANA");
+        public static Font PrimaryFont(int size) => new Font(new FontFamily("CENTURY GOTHIC"), size, FontStyle.Regular, GraphicsUnit.Pixel);
 
-        private Font primaryFont16 = new Font(
-           PrimaryFont,
-           16,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
+        public static Font SecondaryFont(int size) => new Font(new FontFamily("VERDANA"), size, FontStyle.Bold, GraphicsUnit.Pixel);
 
-        public Font PrimaryFont16
-        {
-            get
-            {
-                return primaryFont16;
-            }
-            set
-            {
-                primaryFont16 = value;
-            }
-        }        
-        
-        private Font primaryFont12 = new Font(
-           PrimaryFont,
-           12,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
-
-        public Font PrimaryFont12
-        {
-            get
-            {
-                return primaryFont12;
-            }
-            set
-            {
-                primaryFont12 = value;
-            }
-        }
-
-        private Font primaryFont10 = new Font(
-           PrimaryFont,
-           10,
-           FontStyle.Regular,
-           GraphicsUnit.Pixel);
-        public Font PrimaryFont10
-        {
-            get
-            {
-                return primaryFont10;
-            }
-            set
-            {
-                primaryFont10 = value;
-            }
-        }
-
-        private Font secondaryFont16 = new Font(
-      SecondaryFont,
-      16,
-      FontStyle.Bold,
-      GraphicsUnit.Pixel);
-        public Font SecondaryFont16
-        {
-            get
-            {
-                return secondaryFont16;
-            }
-            set
-            {
-                secondaryFont16 = value;
-            }
-        }
         #endregion
+
     }
+
 }

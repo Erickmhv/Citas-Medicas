@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CitasMedicas.View
 {
-    public partial class ListView : Form
+    public partial class HorarioDetailView : Form
     {
-        public ListView()
+        public HorarioDetailView()
         {
             InitializeComponent();
         }

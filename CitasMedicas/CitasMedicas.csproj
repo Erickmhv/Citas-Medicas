@@ -75,6 +75,54 @@
     <Compile Include="Datos\Entities\Pago.cs" />
     <Compile Include="Datos\Entities\Usuario.cs" />
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="View\DetailView\DetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\DetailView.Designer.cs">
+      <DependentUpon>DetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\HorarioDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\HorarioDetailView.Designer.cs">
+      <DependentUpon>HorarioDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\EspecialidadDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\EspecialidadDetailView.Designer.cs">
+      <DependentUpon>EspecialidadDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\MedicoDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\MedicoDetailView.Designer.cs">
+      <DependentUpon>MedicoDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\PacienteDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\PacienteDetailView.Designer.cs">
+      <DependentUpon>PacienteDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\PagoDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\PagoDetailView.Designer.cs">
+      <DependentUpon>PagoDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\CitaDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\CitaDetailView.Designer.cs">
+      <DependentUpon>CitaDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailView\UsuarioDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DetailView\UsuarioDetailView.Designer.cs">
+      <DependentUpon>UsuarioDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +151,32 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\DetailView\DetailView.resx">
+      <DependentUpon>DetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\HorarioDetailView.resx">
+      <DependentUpon>HorarioDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\EspecialidadDetailView.resx">
+      <DependentUpon>EspecialidadDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\MedicoDetailView.resx">
+      <DependentUpon>MedicoDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\PacienteDetailView.resx">
+      <DependentUpon>PacienteDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\PagoDetailView.resx">
+      <DependentUpon>PagoDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\CitaDetailView.resx">
+      <DependentUpon>CitaDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DetailView\UsuarioDetailView.resx">
+      <DependentUpon>UsuarioDetailView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ListView.resx">
       <DependentUpon>ListView.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,8 +202,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Utils\Images\hospital.ico" />
-    <Content Include="Utils\Images\Login.png" />
+    <EmbeddedResource Include="Utils\Images\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\Images\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\Images\Password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\Images\Hospital.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
