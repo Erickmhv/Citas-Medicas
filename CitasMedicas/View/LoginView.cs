@@ -1,13 +1,9 @@
 ﻿using CitasMedicas.Utils;
 using CitasMedicas.View;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CitasMedicas
@@ -29,16 +25,16 @@ namespace CitasMedicas
             FocusUser();
         }
 
-        private void FocusUser() 
+        private void FocusUser()
         {
             ActiveControl = txtUser;
-            txtUser.BackColor = Util.SecondaryColor; 
+            txtUser.BackColor = Util.SecondaryColor;
             pnlUser.BackColor = Util.SecondaryColor;
-            txtPassword.BackColor = Util.ThirdColor; 
+            txtPassword.BackColor = Util.ThirdColor;
             pnlPassword.BackColor = Util.ThirdColor;
-        }   
-        
-        private void FocusPassword() 
+        }
+
+        private void FocusPassword()
         {
             ActiveControl = txtPassword;
             txtUser.BackColor = Util.ThirdColor;
@@ -60,6 +56,10 @@ namespace CitasMedicas
 
         private void CargarDiseno()
         {
+            pbLogin.Image = Util.CambiarImagenColor("Login.png", Util.SecondaryColor);
+            pbUser.Image = Util.CambiarImagenColor("User.png", Util.PrimaryColor);
+            pbPassword.Image = Util.CambiarImagenColor("Password.png", Util.PrimaryColor);
+
             pnlBienvenido.BackColor = Util.PrimaryColor;
 
             lblBienvenido.Font = Util.PrimaryFont(16);

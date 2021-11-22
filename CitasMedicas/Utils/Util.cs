@@ -1,11 +1,53 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CitasMedicas.Utils
 {
     public class Util
     {
+        public static Image CambiarImagenColor(string imagen, Color c)
+        {
+            Bitmap bmp = null;
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var resourceName = assembly.GetManifestResourceNames().FirstOrDefault(x => x.Contains(imagen));
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream != null) bmp = (Bitmap)Image.FromStream(stream);
+            }
+            
+            if (bmp == null)
+                return null;
+
+            int width = bmp.Width;
+            int height = bmp.Height;
+
+            Bitmap image = new Bitmap(bmp);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color p = bmp.GetPixel(x, y);
+
+                    int a = p.A;
+                    int r = p.R;
+                    int g = p.G;
+                    int b = p.B;
+
+                    image.SetPixel(x, y, Color.FromArgb(a, c.R, c.G, c.B));
+
+                }
+            }
+
+            return image;
+
+        }
+
 
         public static void CreateTimer(bool cerrado, Form form, Timer timer1)
         {

@@ -33,45 +33,54 @@ namespace CitasMedicas
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             this.pnlBienvenido = new System.Windows.Forms.Panel();
+            this.pbLogin = new System.Windows.Forms.PictureBox();
             this.lblDilenny = new System.Windows.Forms.Label();
             this.lblDesarrollado = new System.Windows.Forms.Label();
             this.lblErick = new System.Windows.Forms.Label();
             this.lblCita = new System.Windows.Forms.Label();
             this.lblBienvenido = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlFondo = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.pnlPassword = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pbPassword = new System.Windows.Forms.PictureBox();
             this.pnlUser = new System.Windows.Forms.Panel();
             this.txtUser = new System.Windows.Forms.TextBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pbUser = new System.Windows.Forms.PictureBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.btnX = new System.Windows.Forms.Button();
             this.pnlBienvenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
             this.pnlFondo.SuspendLayout();
             this.pnlPassword.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPassword)).BeginInit();
             this.pnlUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUser)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBienvenido
             // 
             this.pnlBienvenido.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlBienvenido.Controls.Add(this.pbLogin);
             this.pnlBienvenido.Controls.Add(this.lblDilenny);
             this.pnlBienvenido.Controls.Add(this.lblDesarrollado);
             this.pnlBienvenido.Controls.Add(this.lblErick);
             this.pnlBienvenido.Controls.Add(this.lblCita);
             this.pnlBienvenido.Controls.Add(this.lblBienvenido);
-            this.pnlBienvenido.Controls.Add(this.pictureBox1);
             this.pnlBienvenido.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlBienvenido.Location = new System.Drawing.Point(0, 0);
             this.pnlBienvenido.Name = "pnlBienvenido";
             this.pnlBienvenido.Size = new System.Drawing.Size(300, 530);
             this.pnlBienvenido.TabIndex = 0;
+            // 
+            // pbLogin
+            // 
+            this.pbLogin.Location = new System.Drawing.Point(95, 40);
+            this.pbLogin.Name = "pbLogin";
+            this.pbLogin.Size = new System.Drawing.Size(120, 120);
+            this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogin.TabIndex = 0;
+            this.pbLogin.TabStop = false;
             // 
             // lblDilenny
             // 
@@ -118,16 +127,6 @@ namespace CitasMedicas
             this.lblBienvenido.TabIndex = 1;
             this.lblBienvenido.Text = "Bienvenido al programa";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(95, 40);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 120);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
             // pnlFondo
             // 
             this.pnlFondo.Controls.Add(this.btnLogin);
@@ -155,7 +154,7 @@ namespace CitasMedicas
             // pnlPassword
             // 
             this.pnlPassword.Controls.Add(this.txtPassword);
-            this.pnlPassword.Controls.Add(this.pictureBox2);
+            this.pnlPassword.Controls.Add(this.pbPassword);
             this.pnlPassword.Location = new System.Drawing.Point(0, 237);
             this.pnlPassword.Name = "pnlPassword";
             this.pnlPassword.Size = new System.Drawing.Size(450, 45);
@@ -173,20 +172,19 @@ namespace CitasMedicas
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             // 
-            // pictureBox2
+            // pbPassword
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(15, 11);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
+            this.pbPassword.Location = new System.Drawing.Point(15, 11);
+            this.pbPassword.Name = "pbPassword";
+            this.pbPassword.Size = new System.Drawing.Size(24, 24);
+            this.pbPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPassword.TabIndex = 6;
+            this.pbPassword.TabStop = false;
             // 
             // pnlUser
             // 
             this.pnlUser.Controls.Add(this.txtUser);
-            this.pnlUser.Controls.Add(this.pictureBox3);
+            this.pnlUser.Controls.Add(this.pbUser);
             this.pnlUser.Location = new System.Drawing.Point(0, 185);
             this.pnlUser.Name = "pnlUser";
             this.pnlUser.Size = new System.Drawing.Size(450, 45);
@@ -203,15 +201,14 @@ namespace CitasMedicas
             this.txtUser.TabIndex = 1;
             this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
             // 
-            // pictureBox3
+            // pbUser
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(15, 11);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 7;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
+            this.pbUser.Location = new System.Drawing.Point(15, 11);
+            this.pbUser.Name = "pbUser";
+            this.pbUser.Size = new System.Drawing.Size(24, 24);
+            this.pbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbUser.TabIndex = 7;
+            this.pbUser.TabStop = false;
             // 
             // lblLogin
             // 
@@ -251,15 +248,15 @@ namespace CitasMedicas
             this.Load += new System.EventHandler(this.LoginView_Load);
             this.pnlBienvenido.ResumeLayout(false);
             this.pnlBienvenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).EndInit();
             this.pnlFondo.ResumeLayout(false);
             this.pnlFondo.PerformLayout();
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPassword)).EndInit();
             this.pnlUser.ResumeLayout(false);
             this.pnlUser.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -268,7 +265,7 @@ namespace CitasMedicas
 
         private System.Windows.Forms.Panel pnlBienvenido;
         private System.Windows.Forms.Panel pnlFondo;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbLogin;
         private System.Windows.Forms.Label lblBienvenido;
         private System.Windows.Forms.Label lblCita;
         private System.Windows.Forms.Label lblErick;
@@ -278,8 +275,8 @@ namespace CitasMedicas
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Panel pnlUser;
         private System.Windows.Forms.Panel pnlPassword;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbPassword;
+        private System.Windows.Forms.PictureBox pbUser;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;

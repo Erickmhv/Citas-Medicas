@@ -39,15 +39,15 @@ namespace CitasMedicas.View
             this.btnPaciente = new System.Windows.Forms.Button();
             this.btnPago = new System.Windows.Forms.Button();
             this.btnCita = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbHospital = new System.Windows.Forms.PictureBox();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnX = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHospital)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@ namespace CitasMedicas.View
             this.pnlMenu.Controls.Add(this.btnPaciente);
             this.pnlMenu.Controls.Add(this.btnPago);
             this.pnlMenu.Controls.Add(this.btnCita);
-            this.pnlMenu.Controls.Add(this.pictureBox1);
+            this.pnlMenu.Controls.Add(this.pbHospital);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlMenu.Name = "pnlMenu";
@@ -177,15 +177,14 @@ namespace CitasMedicas.View
             this.btnCita.UseVisualStyleBackColor = true;
             this.btnCita.Click += new System.EventHandler(this.btnCita_Click);
             // 
-            // pictureBox1
+            // pbHospital
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(40, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.pbHospital.Location = new System.Drawing.Point(40, 20);
+            this.pbHospital.Name = "pbHospital";
+            this.pbHospital.Size = new System.Drawing.Size(120, 100);
+            this.pbHospital.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbHospital.TabIndex = 1;
+            this.pbHospital.TabStop = false;
             // 
             // pnlTop
             // 
@@ -198,6 +197,30 @@ namespace CitasMedicas.View
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(600, 30);
             this.pnlTop.TabIndex = 1;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(250, 0);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(80, 30);
+            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Location = new System.Drawing.Point(140, 0);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(80, 30);
+            this.btnEditar.TabIndex = 7;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnNuevo
             // 
@@ -232,30 +255,6 @@ namespace CitasMedicas.View
             this.pnlMain.Size = new System.Drawing.Size(600, 420);
             this.pnlMain.TabIndex = 2;
             // 
-            // btnEditar
-            // 
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Location = new System.Drawing.Point(140, 0);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(80, 30);
-            this.btnEditar.TabIndex = 7;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(250, 0);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(80, 30);
-            this.btnEliminar.TabIndex = 8;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,7 +269,7 @@ namespace CitasMedicas.View
             this.Text = "MainView";
             this.Load += new System.EventHandler(this.MainView_Load);
             this.pnlMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHospital)).EndInit();
             this.pnlTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -282,7 +281,7 @@ namespace CitasMedicas.View
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Button btnX;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbHospital;
         private System.Windows.Forms.Button btnCita;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLogout;

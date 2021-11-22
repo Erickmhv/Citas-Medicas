@@ -23,6 +23,7 @@ namespace CitasMedicas.View
 
         private void CargarDiseno()
         {
+            pbHospital.Image = Util.CambiarImagenColor("Hospital.png", Util.SecondaryColor);
 
             btnNuevo.Font = Util.SecondaryFont(12);
             btnNuevo.ForeColor = Util.PrimaryColor;
