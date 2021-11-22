@@ -62,6 +62,7 @@ namespace CitasMedicas.View
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ListView";
             this.Text = "ListView";
+            this.Load += new System.EventHandler(this.ListView_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);

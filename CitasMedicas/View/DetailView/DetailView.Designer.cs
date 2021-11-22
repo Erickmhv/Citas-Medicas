@@ -91,6 +91,7 @@ namespace CitasMedicas.View
             this.Controls.Add(this.pnl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DetailView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ListView";
             this.Load += new System.EventHandler(this.CitaDetailView_Load);
             this.pnl.ResumeLayout(false);

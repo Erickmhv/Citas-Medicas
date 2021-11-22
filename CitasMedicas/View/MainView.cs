@@ -118,10 +118,55 @@ namespace CitasMedicas.View
             var detailView = new DetailView();
             listView.TopLevel = false;
             listView.AutoScroll = true;
+            listView.Dock = DockStyle.Fill;
             detailView.pnl.Controls.Add(listView);
 
             listView.Visible = true;
             detailView.Show();
+        }
+
+        public void CargarDetailsView()
+        {
+            if (pnlMain.Controls.Count > 0)
+            {
+                foreach (ListView p in pnlMain.Controls)
+                {
+                    switch (p.Name)
+                    {
+                        case "Cita":
+                            CargarDetailView(new CitaDetailView());
+                            break;
+
+                        case "Pago":
+                            CargarDetailView(new PagoDetailView());
+                            break;
+
+                        case "Paciente":
+                            CargarDetailView(new PacienteDetailView());
+                            break;
+
+                        case "Medico":
+                            CargarDetailView(new MedicoDetailView());
+                            break;
+
+                        case "Usuario":
+                            CargarDetailView(new UsuarioDetailView());
+                            break;
+
+                        case "Especialidad":
+                            CargarDetailView(new EspecialidadDetailView());
+                            break;
+
+                        case "Horario":
+                            CargarDetailView(new HorarioDetailView());
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+
         }
 
         private void btnCita_Click(object sender, EventArgs e)
@@ -168,50 +213,12 @@ namespace CitasMedicas.View
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if (pnlMain.Controls.Count > 0)
-            {
-                foreach (ListView p in pnlMain.Controls)
-                {
-                    switch (p.Name)
-                    {
-                        case "Cita":
-                            CargarDetailView(new CitaDetailView());
-                            break;
-
-                        case "Pago":
-                            CargarDetailView(new PagoDetailView());
-                            break;
-
-                        case "Paciente":
-                            CargarDetailView(new PacienteDetailView());
-                            break;
-
-                        case "Medico":
-                            CargarDetailView(new MedicoDetailView());
-                            break;
-
-                        case "Usuario":
-                            CargarDetailView(new UsuarioDetailView());
-                            break;
-
-                        case "Especialidad":
-                            CargarDetailView(new EspecialidadDetailView());
-                            break;
-
-                        case "Horario":
-                            CargarDetailView(new HorarioDetailView());
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-            }
+            CargarDetailsView();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
+            CargarDetailsView();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

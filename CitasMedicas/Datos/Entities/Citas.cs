@@ -16,7 +16,6 @@ namespace CitasMedicas.Datos.Entities
      public  int UsuarioId { get; set; }
      public int MedicoId { get; set; }
      public string EstatusCita { get; set; }
-     public bool Borrado { get; set;  }
      public Usuario IdUsuario { get; set; }
 
      public FechaEstatus FechaRegistro { get; set; }

@@ -113,7 +113,11 @@ namespace CitasMedicas
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Hide();
-            new MainView().Show();
+
+
+            var mainView = new MainView();
+            Util.CreateTimer(false,mainView, new Timer());
+            mainView.Show();
         }
     }
 }

@@ -17,5 +17,10 @@ namespace CitasMedicas.View
         {
             InitializeComponent();
         }
+
+        private void ListView_Load(object sender, EventArgs e)
+        {
+            dgv.BackgroundColor = Util.ThirdColor;
+        }
     }
 }
