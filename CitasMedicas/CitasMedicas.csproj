@@ -65,11 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\Context\AppDbContext.cs" />
-    <Compile Include="Datos\Entities\Citas.cs" />
+    <Compile Include="Datos\Entities\Cita.cs" />
     <Compile Include="Datos\Entities\Especialidad.cs" />
     <Compile Include="Datos\Entities\FechaEstatus.cs" />
     <Compile Include="Datos\Entities\Horario.cs" />
-    <Compile Include="Datos\Entities\Login.cs" />
     <Compile Include="Datos\Entities\Medico.cs" />
     <Compile Include="Datos\Entities\Paciente.cs" />
     <Compile Include="Datos\Entities\Pago.cs" />
