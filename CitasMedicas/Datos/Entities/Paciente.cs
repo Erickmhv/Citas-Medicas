@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CitasMedicas.Datos.Entities
 {
-    public class Paciente
+    public class Paciente: FechaEstatus
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -16,7 +17,11 @@ namespace CitasMedicas.Datos.Entities
         public string Sintomas { get; set; }
         public string Medicamentos { get; set; }
         public string Alergias { get; set; }
-        public FechaEstatus FechaEstatus { get; set; }
+      
+
+        public ICollection<Cita> Cita { get; set; }
+
+
 
     }
 }

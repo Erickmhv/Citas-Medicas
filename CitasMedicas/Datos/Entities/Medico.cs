@@ -2,7 +2,7 @@
 
 namespace CitasMedicas.Datos.Entities
 {
-    public class Medico
+    public class Medico:FechaEstatus
     {
         public int Id { get; set; }
         public string Cedula { get; set; }
@@ -15,7 +15,7 @@ namespace CitasMedicas.Datos.Entities
         public string Direccion { get; set; }
         public Cita MedicoId { get; set; }
         public Especialidad EspecialidadId { get; set; }
-        public FechaEstatus FechaEstatus { get; set; }
+        
 
     }
 }

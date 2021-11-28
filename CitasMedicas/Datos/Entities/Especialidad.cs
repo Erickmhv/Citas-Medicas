@@ -6,5 +6,7 @@
         public string Nombre { get; set; }
         public FechaEstatus FechaEstatus { get; set; }
 
+        public Medico Medico { get; set; }
+
     }
 }
