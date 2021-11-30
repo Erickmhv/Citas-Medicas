@@ -74,6 +74,7 @@
     <Compile Include="Datos\Entities\Pago.cs" />
     <Compile Include="Datos\Entities\Usuario.cs" />
     <Compile Include="Interfaces\IGenericoRepositorio.cs" />
+    <Compile Include="Interfaces\OperationResult.cs" />
     <Compile Include="Migrations\202111282234198_MigrationInitial.cs" />
     <Compile Include="Migrations\202111282234198_MigrationInitial.designer.cs">
       <DependentUpon>202111282234198_MigrationInitial.cs</DependentUpon>
@@ -83,6 +84,15 @@
       <DependentUpon>202111282259464_MigrationPrueba.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositorios\CitaRepositorio.cs" />
+    <Compile Include="Repositorios\FechaEstatusRepositorio.cs" />
+    <Compile Include="Repositorios\HorarioRepositorio.cs" />
+    <Compile Include="Repositorios\IGenericoRepositorio1.cs" />
+    <Compile Include="Repositorios\MedicoRepositortio.cs" />
+    <Compile Include="Repositorios\PacienteRepositorio.cs" />
+    <Compile Include="Repositorios\PagoRepositorio.cs" />
+    <Compile Include="Repositorios\RepositorioGenerico.cs" />
+    <Compile Include="Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="View\DetailView\DetailView.cs">
       <SubType>Form</SubType>
@@ -215,9 +225,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositorios\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Utils\Images\Login.png" />
   </ItemGroup>

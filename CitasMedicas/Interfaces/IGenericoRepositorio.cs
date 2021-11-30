@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitasMedicas.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,8 @@ namespace CitasMedicas.Interfaces
         T Create(T entity);
         List<T> GetAll();
         T FindById(int Id);
-        //OperationResult Update(T entity);
-        //OperationResult Delete(T entity);
+        OperationResult Update(T entity);
+        OperationResult Delete(T entity);
 
     }
 }

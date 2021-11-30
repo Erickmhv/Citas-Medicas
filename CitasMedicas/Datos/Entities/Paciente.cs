@@ -17,6 +17,8 @@ namespace CitasMedicas.Datos.Entities
         public string Sintomas { get; set; }
         public string Medicamentos { get; set; }
         public string Alergias { get; set; }
+
+     
       
 
         public ICollection<Cita> Cita { get; set; }

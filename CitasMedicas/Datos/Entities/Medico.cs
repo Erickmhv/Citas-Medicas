@@ -16,6 +16,7 @@ namespace CitasMedicas.Datos.Entities
         public Cita MedicoId { get; set; }
         public Especialidad EspecialidadId { get; set; }
         
+        
 
     }
 }

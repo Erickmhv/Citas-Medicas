@@ -11,7 +11,7 @@ namespace CitasMedicas.Datos.Entities
         public string Telefono { get; set; }
         public string Cedula { get; set; }
         public string FechaNacimiento { get; set; }
-      
+        public List<Cita> Cita { get; set; }
 
     }
 }

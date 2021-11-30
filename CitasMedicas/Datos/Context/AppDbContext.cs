@@ -80,12 +80,13 @@ namespace CitasMedicas.Datos.Context
             Medico.Property(e => e.Nombre).HasColumnName("Nombre").HasColumnType("varchar").HasMaxLength(50).IsRequired();
             Medico.HasRequired(e => e.EspecialidadId);
 
+
             var Paciente = modelBuilder.Entity<Paciente>();
             Paciente.ToTable("Paciente");
             Paciente.HasKey(e => e.Id);
             Paciente.Property(e => e.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity).IsRequired();
             Paciente.Property(e => e.Nombre).HasColumnName("Nombre").HasColumnType("varchar").HasMaxLength(50).IsRequired();
-
+           
 
 
 

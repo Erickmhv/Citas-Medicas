@@ -2,7 +2,7 @@
 
 namespace CitasMedicas.Datos.Entities
 {
-    public class Cita
+    public class Cita: FechaEstatus
     {
         public int Id { get; set;  }
         public string Detalle { get; set; }

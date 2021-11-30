@@ -12,7 +12,7 @@ namespace CitasMedicas.Datos.Entities
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string Estatus { get; set; }
-        public bool Borrado { get; set; }
+        public int Borrado { get; set; }
 
     }
 }
