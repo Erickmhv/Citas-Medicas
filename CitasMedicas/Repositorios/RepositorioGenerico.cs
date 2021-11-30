@@ -15,54 +15,58 @@ namespace CitasMedicas.Repositorios
         private AppDbContext _context;
         private DbSet<T> _set;
 
-
         public RepositorioGenerico()
         {
             _context = new AppDbContext();
             _set = _context.Set<T>();
         }
-
-        public T create(T entity)
+        //para crear
+        public T Create(T entity)
         {
             _set.Add(entity);
             _context.SaveChanges();
 
-
             return entity;
-
         }
-        public OperationResult Delete(T entity)
+        //Eliminar 
+        public bool Delete(T entity)
+        {
+
+            _context.Entry(entity).State = EntityState.Modified;
+            entity.Borrado = 1;
+            entity.Estatus = "I";
+            entity.FechaModificacion = DateTime.Now;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public T FindByID(int id)
+        {
+            return _set.FirstOrDefault(x => x.Id == id & x.Estatus == "A" & x.Borrado == 0);
+        }
+
+        //Get all 
+        public List<T> GetAll()
+        {
+            return _set.Where(x => x.Borrado == 0 & x.Estatus == "A").ToList();
+        }
+
+        //Actualizar 
+        public bool Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            entity.Borrado = true;
-            entity.FechaModificacion = DateTime.Today;
-
+            entity.FechaModificacion = DateTime.Now;
             _context.SaveChanges();
-            return new OperationResult() { Success = true };
-
+            return true;
         }
 
 
 
-        public  T  FindById (int Id)
-        {
-            return _set.FirstOrDefault(x => x.Id == Id);
-        }
-        
 
 
-        //public List(T) GetAll()
-        //{
-        //    return _set.Where(x => x.Borrado == false).ToList();
-        //}
-        public OperationResult Update (T entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
 
-            return new OperationResult() { Success = true };
-        }
+
+
     }
-
 
 }
