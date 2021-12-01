@@ -25,7 +25,7 @@ namespace CitasMedicas.Datos.Context
         {
             modelBuilder.Ignore<FechaEstatus>();
 
-            var usuario = modelBuilder.Entity<Usuario>().Ignore(e => e.UsuarioModifico).Ignore(e => e.UsuarioRegistro);
+            var usuario = modelBuilder.Entity<Usuario>().Ignore(e => e.UsuarioModifico).Ignore(e => e.UsuarioRegistro).Ignore(e => e.UsuarioModificoId).Ignore(e => e.UsuarioRegistroId);
             usuario.ToTable("Usuario");
             usuario.HasKey(e => e.Id);
             usuario.Property(e => e.Id).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity).IsRequired();

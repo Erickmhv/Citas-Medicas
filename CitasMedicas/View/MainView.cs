@@ -128,7 +128,9 @@ namespace CitasMedicas.View
             listView.dgv.Columns["Borrado"].Visible = false;
             listView.dgv.Columns["Estatus"].Visible = false;
             listView.dgv.Columns["UsuarioRegistro"].Visible = false;
-            listView.dgv.Columns["UsuarioModifico"].Visible = false;
+            listView.dgv.Columns["UsuarioModifico"].Visible = false;  
+            listView.dgv.Columns["UsuarioRegistroId"].Visible = false;
+            listView.dgv.Columns["UsuarioModificoId"].Visible = false;
 
             switch (nombre)
             {
@@ -339,26 +341,32 @@ namespace CitasMedicas.View
             {
                 case "Cita":
                     citaRepositorio.Delete(citaRepositorio.FindByID(id));
+                    CargarListView(citaRepositorio.GetAll(), "Cita");
                     break;   
                 
                 case "Especialidad":
                     especialidadRepositorio.Delete(especialidadRepositorio.FindByID(id));
+                    CargarListView(especialidadRepositorio.GetAll(), "Especialidad");
                     break;
                      
                 case "Horario":
                     horarioRepositorio.Delete(horarioRepositorio.FindByID(id));
+                    CargarListView(horarioRepositorio.GetAll(), "Horario");
                     break;
 
                 case "Paciente":
                     pacienteRepositorio.Delete(pacienteRepositorio.FindByID(id));
+                    CargarListView(pacienteRepositorio.GetAll(), "Paciente");
                     break;
 
                 case "Medico":
                     medicoRepositorio.Delete(medicoRepositorio.FindByID(id));
+                    CargarListView(medicoRepositorio.GetAll(), "Medico");
                     break;
 
                 case "Usuario":
                     usuarioRepositorio.Delete(usuarioRepositorio.FindByID(id));
+                    CargarListView(usuarioRepositorio.GetAll(), "Usuario");
                     break;
                    
                 default:

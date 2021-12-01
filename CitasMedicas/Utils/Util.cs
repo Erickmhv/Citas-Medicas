@@ -10,6 +10,10 @@ namespace CitasMedicas.Utils
 {
     public class Util
     {
+        public static UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+
+        public static int UsuarioActualId = UsuarioActual != null ? usuarioRepositorio.FindByID(UsuarioActual.Id).Id : 0;
+
         public static Usuario UsuarioActual;
 
         #region Metodos

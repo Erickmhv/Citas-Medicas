@@ -15,7 +15,7 @@ namespace CitasMedicas.View
         public CitaDetailView(int id)
         {
             InitializeComponent();
-
+            
             if (id != 0)
             {
                 cita = new Cita();

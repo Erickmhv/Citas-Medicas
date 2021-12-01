@@ -10,8 +10,10 @@ namespace CitasMedicas.Datos.Entities
     public abstract class FechaEstatus
     {   
         public int Id { get; set; }
+        [NotMapped]
         public int UsuarioRegistroId { get; set; }
         public Usuario UsuarioRegistro { get; set; }
+        [NotMapped]
         public int UsuarioModificoId { get; set; }
         public Usuario UsuarioModifico { get; set; }
         public DateTime? FechaRegistro { get; set; }

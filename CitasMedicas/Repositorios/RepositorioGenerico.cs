@@ -26,7 +26,7 @@ namespace CitasMedicas.Repositorios
             entity.FechaRegistro = DateTime.Now;
             entity.Borrado = 0;
             if (Utils.Util.UsuarioActual != null)
-            entity.UsuarioRegistroId = Utils.Util.UsuarioActual.Id;
+            entity.UsuarioRegistroId = Utils.Util.UsuarioActualId;
             entity.Estatus = "A";
 
             _set.Add(entity);
@@ -61,7 +61,7 @@ namespace CitasMedicas.Repositorios
         {
             _context.Entry(entity).State = EntityState.Modified;
             entity.FechaModificacion = DateTime.Now;
-            entity.UsuarioModificoId = Utils.Util.UsuarioActual.Id;
+            entity.UsuarioModificoId = Utils.Util.UsuarioActualId;
             _context.SaveChanges();
             return true;
         }

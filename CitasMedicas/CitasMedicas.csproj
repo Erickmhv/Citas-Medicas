@@ -75,9 +75,9 @@
     <Compile Include="Datos\Entities\Usuario.cs" />
     <Compile Include="Interfaces\IGenericoRepositorio.cs" />
     <Compile Include="Interfaces\OperationResult.cs" />
-    <Compile Include="Migrations\202112012119103_Initial.cs" />
-    <Compile Include="Migrations\202112012119103_Initial.designer.cs">
-      <DependentUpon>202112012119103_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202112012130406_Initial.cs" />
+    <Compile Include="Migrations\202112012130406_Initial.designer.cs">
+      <DependentUpon>202112012130406_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CitaRepositorio.cs" />
@@ -159,8 +159,8 @@
     <Compile Include="View\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202112012119103_Initial.resx">
-      <DependentUpon>202112012119103_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112012130406_Initial.resx">
+      <DependentUpon>202112012130406_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
