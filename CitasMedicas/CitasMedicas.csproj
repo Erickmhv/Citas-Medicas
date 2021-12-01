@@ -75,20 +75,17 @@
     <Compile Include="Datos\Entities\Usuario.cs" />
     <Compile Include="Interfaces\IGenericoRepositorio.cs" />
     <Compile Include="Interfaces\OperationResult.cs" />
-    <Compile Include="Migrations\202111282234198_MigrationInitial.cs" />
-    <Compile Include="Migrations\202111282234198_MigrationInitial.designer.cs">
-      <DependentUpon>202111282234198_MigrationInitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111282259464_MigrationPrueba.cs" />
-    <Compile Include="Migrations\202111282259464_MigrationPrueba.designer.cs">
-      <DependentUpon>202111282259464_MigrationPrueba.cs</DependentUpon>
+    <Compile Include="Migrations\202112012119103_Initial.cs" />
+    <Compile Include="Migrations\202112012119103_Initial.designer.cs">
+      <DependentUpon>202112012119103_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\CitaRepositorio.cs" />
+    <Compile Include="Repositorios\EspecialidadRepositorio.cs" />
     <Compile Include="Repositorios\FechaEstatusRepositorio.cs" />
     <Compile Include="Repositorios\HorarioRepositorio.cs" />
-    <Compile Include="Repositorios\IGenericoRepositorio1.cs" />
-    <Compile Include="Repositorios\MedicoRepositortio.cs" />
+    <Compile Include="Repositorios\IGenericoRepositorio.cs" />
+    <Compile Include="Repositorios\MedicoRepositorio.cs" />
     <Compile Include="Repositorios\PacienteRepositorio.cs" />
     <Compile Include="Repositorios\PagoRepositorio.cs" />
     <Compile Include="Repositorios\RepositorioGenerico.cs" />
@@ -162,11 +159,8 @@
     <Compile Include="View\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Migrations\202111282234198_MigrationInitial.resx">
-      <DependentUpon>202111282234198_MigrationInitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111282259464_MigrationPrueba.resx">
-      <DependentUpon>202111282259464_MigrationPrueba.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112012119103_Initial.resx">
+      <DependentUpon>202112012119103_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

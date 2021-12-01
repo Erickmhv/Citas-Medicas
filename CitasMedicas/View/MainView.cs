@@ -1,4 +1,6 @@
-﻿using CitasMedicas.Utils;
+﻿using CitasMedicas.Datos.Entities;
+using CitasMedicas.Repositorios;
+using CitasMedicas.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,6 +9,14 @@ namespace CitasMedicas.View
 {
     public partial class MainView : Form
     {
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+        CitaRepositorio citaRepositorio = new CitaRepositorio();
+        HorarioRepositorio horarioRepositorio = new HorarioRepositorio();
+        MedicoRepositorio medicoRepositorio = new MedicoRepositorio();
+        PacienteRepositorio pacienteRepositorio = new PacienteRepositorio();
+        EspecialidadRepositorio especialidadRepositorio = new EspecialidadRepositorio();
+        PagoRepositorio pagoRepositorio = new PagoRepositorio();
+
         public class Prueba
         {
             public string Nombre { get; set; }
@@ -98,67 +108,140 @@ namespace CitasMedicas.View
             new LoginView().Show();
         }
 
-        public void CargarListView(List<object> t, string nombre)
+        public void CargarListView<T>(List<T> t, string nombre)
         {
             if (pnlMain.Controls.Count > 0)
                 pnlMain.Controls.RemoveAt(0);
 
             ListView listView = new ListView();
+
+
             listView.TopLevel = false;
             listView.Dock = DockStyle.Fill;
-            listView.Name = nombre;
+            listView.Text = nombre;
+            listView.Name = "dgv";
             pnlMain.Controls.Add(listView);
             listView.dgv.DataSource = t;
+            
+            listView.dgv.Columns["FechaRegistro"].Visible = false;
+            listView.dgv.Columns["FechaModificacion"].Visible = false;
+            listView.dgv.Columns["Borrado"].Visible = false;
+            listView.dgv.Columns["Estatus"].Visible = false;
+            listView.dgv.Columns["UsuarioRegistro"].Visible = false;
+            listView.dgv.Columns["UsuarioModifico"].Visible = false;
+
+            switch (nombre)
+            {
+                case "Cita":
+                    listView.dgv.Columns["Medico"].Visible = false;
+                    listView.dgv.Columns["MedicoId"].Visible = false;
+                    listView.dgv.Columns["Paciente"].Visible = false;
+                    listView.dgv.Columns["PacienteId"].Visible = false;
+                    break;
+
+                case "Horario":
+                    listView.dgv.Columns["Medico"].Visible = false;
+                    listView.dgv.Columns["MedicoId"].Visible = false;
+                    listView.dgv.Columns["HoraDesde"].DefaultCellStyle.Format = "hh:mm tt";
+                    listView.dgv.Columns["HoraHasta"].DefaultCellStyle.Format = "hh:mm tt";
+
+                    break;
+
+                case "Medico":
+                    listView.dgv.Columns["Especialidad"].Visible = false;
+                    listView.dgv.Columns["EspecialidadId"].Visible = false;
+                    break;
+
+                default:
+                    break;
+            }
+
             listView.Show();
 
         }
 
-        public void CargarDetailView(Form listView)
+        public void CargarDetailView(Form detailView,MainView mainView,string nombre, int id)
         {
-            var detailView = new DetailView();
-            listView.TopLevel = false;
-            listView.AutoScroll = true;
-            listView.Dock = DockStyle.Fill;
-            detailView.pnl.Controls.Add(listView);
 
-            listView.Visible = true;
-            detailView.Show();
+            var detailGenericoView = new DetailView(mainView);
+
+            switch (nombre)
+            {
+                case "Cita":
+                    detailGenericoView.CitaActual = citaRepositorio.FindByID(id);
+                    break;
+
+                case "Paciente":
+                    detailGenericoView.PacienteActual = pacienteRepositorio.FindByID(id);
+                    break;
+
+                case "Medico":
+                    detailGenericoView.MedicoActual = medicoRepositorio.FindByID(id);
+                    break;
+
+                case "Usuario":
+                    detailGenericoView.UsuarioActual = usuarioRepositorio.FindByID(id);
+                    break;
+
+                case "Especialidad":
+                    detailGenericoView.EspecialidadActual = especialidadRepositorio.FindByID(id);
+                    break;
+
+                case "Horario":
+                    detailGenericoView.HorarioActual = horarioRepositorio.FindByID(id);
+                    break;
+
+                default:
+                    break;
+            }
+
+            detailGenericoView.Text = nombre;
+            //detailGenericoView.Size = detailView.Size;
+
+            detailView.TopLevel = false;
+            detailView.AutoScroll = true;
+            detailView.Dock = DockStyle.Fill;
+            detailGenericoView.pnl.Controls.Add(detailView);
+
+            detailView.Visible = true;
+            detailGenericoView.Show();
+
         }
 
-        public void CargarDetailsView()
+        public void CargarDetailsView(int id)
         {
             if (pnlMain.Controls.Count > 0)
             {
                 foreach (ListView p in pnlMain.Controls)
                 {
-                    switch (p.Name)
+                    switch (p.Text)
                     {
                         case "Cita":
-                            CargarDetailView(new CitaDetailView());
+                            CargarDetailView(new CitaDetailView(id), this,p.Text,id);
                             break;
 
-                        case "Pago":
-                            CargarDetailView(new PagoDetailView());
-                            break;
+                        //case "Pago":
+                        //    CargarDetailView(new PagoDetailView());
+                        //    break;
 
                         case "Paciente":
-                            CargarDetailView(new PacienteDetailView());
+                            CargarDetailView(new PacienteDetailView(id), this, p.Text, id);
                             break;
 
                         case "Medico":
-                            CargarDetailView(new MedicoDetailView());
+                            CargarDetailView(new MedicoDetailView(id), this, p.Text, id);
                             break;
 
                         case "Usuario":
-                            CargarDetailView(new UsuarioDetailView());
+                            CargarDetailView(new UsuarioDetailView(id), this, p.Text, id);
                             break;
 
                         case "Especialidad":
-                            CargarDetailView(new EspecialidadDetailView());
+                            CargarDetailView(new EspecialidadDetailView(id), this, p.Text, id);
                             break;
 
                         case "Horario":
-                            CargarDetailView(new HorarioDetailView());
+                            CargarDetailView(new HorarioDetailView(id), this, p.Text, id);
                             break;
 
                         default:
@@ -171,59 +254,116 @@ namespace CitasMedicas.View
 
         private void btnCita_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Cita" } };
+            List<Cita> list = citaRepositorio.GetAll();
             CargarListView(list, "Cita");
         }
 
         private void btnPago_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Pago" } };
+            List<Pago> list = pagoRepositorio.GetAll();
             CargarListView(list, "Pago");
         }
 
         private void btnPaciente_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Paciente" } };
+            List<Paciente> list = pacienteRepositorio.GetAll();
             CargarListView(list, "Paciente");
         }
 
         private void btnMedico_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Medico" } };
+            List<Medico> list = medicoRepositorio.GetAll();
             CargarListView(list, "Medico");
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Usuario" } };
+            List<Usuario> list = usuarioRepositorio.GetAll();
             CargarListView(list, "Usuario");
         }
 
         private void btnEspecialidad_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Especialidad" } };
+            List<Especialidad> list = especialidadRepositorio.GetAll();
             CargarListView(list, "Especialidad");
         }
 
         private void btnHorario_Click(object sender, EventArgs e)
         {
-            List<object> list = new List<object>() { new Prueba { Nombre = "Horario" } };
+            List<Horario> list = horarioRepositorio.GetAll();
             CargarListView(list, "Horario");
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            CargarDetailsView();
+            CargarDetailsView(0);
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            CargarDetailsView();
+            foreach (ListView p in pnlMain.Controls)
+            {
+                if (p.Name == "dgv")
+                {
+                    foreach (DataGridViewRow row in p.dgv.Rows)
+                    {
+                        if (row.Selected)
+                        {
+                            CargarDetailsView((int)row.Cells["Id"].Value);
+                        }
+                    }
+                }
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            foreach (ListView p in pnlMain.Controls)
+            {
+                if (p.Name == "dgv")
+                {
+                    foreach (DataGridViewRow row in p.dgv.Rows)
+                    {
+                        if (row.Selected)
+                        {
+                            Borrar((int)row.Cells["Id"].Value, p.Text);
+                        }
+                    }
+                }
+            }
+        }
 
+        private void Borrar(int id, string nombre)
+        {
+            switch (nombre)
+            {
+                case "Cita":
+                    citaRepositorio.Delete(citaRepositorio.FindByID(id));
+                    break;   
+                
+                case "Especialidad":
+                    especialidadRepositorio.Delete(especialidadRepositorio.FindByID(id));
+                    break;
+                     
+                case "Horario":
+                    horarioRepositorio.Delete(horarioRepositorio.FindByID(id));
+                    break;
+
+                case "Paciente":
+                    pacienteRepositorio.Delete(pacienteRepositorio.FindByID(id));
+                    break;
+
+                case "Medico":
+                    medicoRepositorio.Delete(medicoRepositorio.FindByID(id));
+                    break;
+
+                case "Usuario":
+                    usuarioRepositorio.Delete(usuarioRepositorio.FindByID(id));
+                    break;
+                   
+                default:
+                    break;
+            }
         }
     }
 }

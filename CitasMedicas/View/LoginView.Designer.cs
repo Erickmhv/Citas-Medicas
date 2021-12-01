@@ -146,7 +146,7 @@ namespace CitasMedicas
             this.btnLogin.Location = new System.Drawing.Point(71, 310);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(148, 35);
-            this.btnLogin.TabIndex = 3;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -158,7 +158,7 @@ namespace CitasMedicas
             this.pnlPassword.Location = new System.Drawing.Point(0, 237);
             this.pnlPassword.Name = "pnlPassword";
             this.pnlPassword.Size = new System.Drawing.Size(450, 45);
-            this.pnlPassword.TabIndex = 0;
+            this.pnlPassword.TabIndex = 1;
             this.pnlPassword.TabStop = true;
             this.pnlPassword.Click += new System.EventHandler(this.pnlPassword_Click);
             // 
@@ -168,7 +168,7 @@ namespace CitasMedicas
             this.txtPassword.Location = new System.Drawing.Point(55, 15);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(370, 13);
-            this.txtPassword.TabIndex = 2;
+            this.txtPassword.TabIndex = 0;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             // 
@@ -198,7 +198,7 @@ namespace CitasMedicas
             this.txtUser.Location = new System.Drawing.Point(55, 15);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(370, 13);
-            this.txtUser.TabIndex = 1;
+            this.txtUser.TabIndex = 0;
             this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
             // 
             // pbUser
@@ -216,7 +216,7 @@ namespace CitasMedicas
             this.lblLogin.Location = new System.Drawing.Point(71, 147);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(110, 13);
-            this.lblLogin.TabIndex = 2;
+            this.lblLogin.TabIndex = 0;
             this.lblLogin.Text = "Logearse a su cuenta";
             // 
             // btnX

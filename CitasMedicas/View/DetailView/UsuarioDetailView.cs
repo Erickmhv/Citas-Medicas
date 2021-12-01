@@ -1,21 +1,37 @@
-﻿using CitasMedicas.Utils;
+﻿using CitasMedicas.Datos.Entities;
+using CitasMedicas.Repositorios;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CitasMedicas.View
 {
     public partial class UsuarioDetailView : Form
     {
-        public UsuarioDetailView()
+        public UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+        public Usuario usuario = new Usuario();
+        public UsuarioDetailView(int id)
         {
             InitializeComponent();
+
+            usuario = usuarioRepositorio.FindByID(id);
+        }
+
+        internal void Cargar()
+        {
+            if (usuario != null)
+            {
+                txtApellido.Text = usuario.Apellido;
+                txtClave.Text = usuario.Clave;
+                txtNombre.Text = usuario.Nombre;
+                txtNombreUsuario.Text = usuario.NombreUsuario;
+            }
+            else
+            {
+                txtApellido.Text = "";
+                txtClave.Text = "";
+                txtNombre.Text = "";
+                txtNombreUsuario.Text = "";
+            }
         }
     }
 }

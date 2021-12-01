@@ -13,7 +13,7 @@ namespace CitasMedicas.Repositorios
     public class RepositorioGenerico<T> : IGenericoRepositorio<T> where T : FechaEstatus
     {
         private AppDbContext _context;
-        private DbSet<T> _set;
+        public DbSet<T> _set;
 
         public RepositorioGenerico()
         {
@@ -23,6 +23,12 @@ namespace CitasMedicas.Repositorios
         //para crear
         public T Create(T entity)
         {
+            entity.FechaRegistro = DateTime.Now;
+            entity.Borrado = 0;
+            if (Utils.Util.UsuarioActual != null)
+            entity.UsuarioRegistroId = Utils.Util.UsuarioActual.Id;
+            entity.Estatus = "A";
+
             _set.Add(entity);
             _context.SaveChanges();
 
@@ -31,7 +37,6 @@ namespace CitasMedicas.Repositorios
         //Eliminar 
         public bool Delete(T entity)
         {
-
             _context.Entry(entity).State = EntityState.Modified;
             entity.Borrado = 1;
             entity.Estatus = "I";
@@ -56,6 +61,7 @@ namespace CitasMedicas.Repositorios
         {
             _context.Entry(entity).State = EntityState.Modified;
             entity.FechaModificacion = DateTime.Now;
+            entity.UsuarioModificoId = Utils.Util.UsuarioActual.Id;
             _context.SaveChanges();
             return true;
         }

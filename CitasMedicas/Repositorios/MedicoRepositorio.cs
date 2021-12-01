@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CitasMedicas.Repositorios
 {
-    public class PagoRepositorio : RepositorioGenerico<Pago>
+   public  class MedicoRepositorio : RepositorioGenerico<Medico>
     {
     }
 }

@@ -1,12 +1,10 @@
 ﻿namespace CitasMedicas.Datos.Entities
 {
-    public class Especialidad
+    public class Especialidad : FechaEstatus
     {
-        public string Id { get; set; }
         public string Nombre { get; set; }
-        public FechaEstatus FechaEstatus { get; set; }
-
-        public Medico Medico { get; set; }
+        //public int MedicoId { get; set; }
+        //public Medico Medico { get; set; }
 
     }
 }

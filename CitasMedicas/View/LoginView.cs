@@ -1,15 +1,18 @@
-﻿using CitasMedicas.Utils;
+﻿using CitasMedicas.Datos.Entities;
+using CitasMedicas.Interfaces;
+using CitasMedicas.Repositorios;
+using CitasMedicas.Utils;
 using CitasMedicas.View;
 using System;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace CitasMedicas
 {
     public partial class LoginView : Form
     {
+        UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+
         public LoginView()
         {
             InitializeComponent();
@@ -112,12 +115,47 @@ namespace CitasMedicas
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Hide();
+            btnLogin.Enabled = false;
+            if (usuarioRepositorio.GetAll().Count == 0)
+            {
+                Usuario usuario = new Usuario();
 
+                usuario.Nombre = "Admin";
+                usuario.Apellido = "Admin";
+                usuario.NombreUsuario = "";
+                usuario.Clave = "";
+                usuario.Estatus = "A";
+                usuario.FechaRegistro = DateTime.Now;
+                usuario.Borrado = 0;
 
-            var mainView = new MainView();
-            Util.CreateTimer(false,mainView, new Timer());
-            mainView.Show();
+                try
+                {
+                    usuarioRepositorio.Create(usuario);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"No se pudo crear el usuario {usuario.Nombre}");
+                    btnLogin.Enabled = true;
+                }
+            }
+
+            var a = usuarioRepositorio.GetAll().FirstOrDefault();
+
+            var u = usuarioRepositorio.FindByLogin(txtUser.Text, txtPassword.Text);
+
+            if (u != null)
+            {
+                Utils.Util.UsuarioActual = u;
+                Hide();
+                var mainView = new MainView();
+                Util.CreateTimer(false, mainView, new Timer());
+                mainView.Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrecta");
+            }
+            btnLogin.Enabled = true;
         }
     }
 }

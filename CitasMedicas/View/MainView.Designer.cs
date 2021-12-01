@@ -73,7 +73,7 @@ namespace CitasMedicas.View
             // 
             this.btnHorario.FlatAppearance.BorderSize = 0;
             this.btnHorario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHorario.Location = new System.Drawing.Point(40, 312);
+            this.btnHorario.Location = new System.Drawing.Point(40, 281);
             this.btnHorario.Name = "btnHorario";
             this.btnHorario.Size = new System.Drawing.Size(120, 25);
             this.btnHorario.TabIndex = 12;
@@ -109,7 +109,7 @@ namespace CitasMedicas.View
             // 
             this.btnEspecialidad.FlatAppearance.BorderSize = 0;
             this.btnEspecialidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEspecialidad.Location = new System.Drawing.Point(40, 281);
+            this.btnEspecialidad.Location = new System.Drawing.Point(40, 250);
             this.btnEspecialidad.Name = "btnEspecialidad";
             this.btnEspecialidad.Size = new System.Drawing.Size(120, 25);
             this.btnEspecialidad.TabIndex = 9;
@@ -121,7 +121,7 @@ namespace CitasMedicas.View
             // 
             this.btnUsuario.FlatAppearance.BorderSize = 0;
             this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuario.Location = new System.Drawing.Point(40, 250);
+            this.btnUsuario.Location = new System.Drawing.Point(40, 219);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(120, 25);
             this.btnUsuario.TabIndex = 8;
@@ -133,7 +133,7 @@ namespace CitasMedicas.View
             // 
             this.btnMedico.FlatAppearance.BorderSize = 0;
             this.btnMedico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMedico.Location = new System.Drawing.Point(40, 219);
+            this.btnMedico.Location = new System.Drawing.Point(40, 188);
             this.btnMedico.Name = "btnMedico";
             this.btnMedico.Size = new System.Drawing.Size(120, 25);
             this.btnMedico.TabIndex = 7;
@@ -145,7 +145,7 @@ namespace CitasMedicas.View
             // 
             this.btnPaciente.FlatAppearance.BorderSize = 0;
             this.btnPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaciente.Location = new System.Drawing.Point(40, 188);
+            this.btnPaciente.Location = new System.Drawing.Point(40, 157);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(120, 25);
             this.btnPaciente.TabIndex = 6;
@@ -157,12 +157,13 @@ namespace CitasMedicas.View
             // 
             this.btnPago.FlatAppearance.BorderSize = 0;
             this.btnPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPago.Location = new System.Drawing.Point(40, 157);
+            this.btnPago.Location = new System.Drawing.Point(40, 312);
             this.btnPago.Name = "btnPago";
             this.btnPago.Size = new System.Drawing.Size(120, 25);
             this.btnPago.TabIndex = 5;
             this.btnPago.Text = "Pago";
             this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Visible = false;
             this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
             // 
             // btnCita
