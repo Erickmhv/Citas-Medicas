@@ -95,10 +95,10 @@ describe("patients data access", () => {
     const select = vi.fn().mockReturnValue({ eq });
     (supabase.from as SupabaseFrom).mockReturnValue({ select });
 
-    const result = await fetchPatientById(\"abc\");
+    const result = await fetchPatientById("abc");
 
     expect(select).toHaveBeenCalled();
-    expect(eq).toHaveBeenCalledWith(\"id\", \"abc\");
+    expect(eq).toHaveBeenCalledWith("id", "abc");
     expect(maybeSingle).toHaveBeenCalled();
     expect(result.error).toBeNull();
   });

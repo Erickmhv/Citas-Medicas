@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
+import { clearClinicIdCache } from "./profile";
 
 export function useSession() {
   const [session, setSession] = useState<Session | null>(null);
@@ -15,8 +16,11 @@ export function useSession() {
       setLoading(false);
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {
       if (!isMounted) return;
+      if (event === "SIGNED_OUT") {
+        clearClinicIdCache();
+      }
       setSession(nextSession);
     });
 

@@ -7,8 +7,24 @@ const baseSelect =
 
 const bucketName = "patient-files";
 
-function sanitizeFileName(name: string) {
-  return name.replace(/\s+/g, "-");
+const ALLOWED_TYPES = ["application/pdf", "image/jpeg", "image/png", "image/webp"];
+const MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+
+export function validateFile(file: File): string | null {
+  if (!ALLOWED_TYPES.includes(file.type)) {
+    return "Tipo de archivo no permitido. Use PDF, JPG, PNG o WebP.";
+  }
+  if (file.size > MAX_SIZE_BYTES) {
+    return "El archivo excede el tamano maximo de 10MB.";
+  }
+  return null;
+}
+
+function sanitizeFileName(name: string): string {
+  return name
+    .replace(/\s+/g, "-")
+    .replace(/[^a-zA-Z0-9.-]/g, "")
+    .toLowerCase();
 }
 
 type UploadPayload = {

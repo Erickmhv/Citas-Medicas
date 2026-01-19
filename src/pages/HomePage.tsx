@@ -102,24 +102,30 @@ export default function HomePage({ onNewPatient, onNewConsultation, onNewFile }:
 
       setPatients((patientsRes.data ?? []) as QuickPatient[]);
       setConsultations(
-        (consultationsRes.data ?? []).map((row) => ({
-          id: row.id,
-          consultation_date: row.consultation_date,
-          patient_name: Array.isArray(row.patients)
-            ? row.patients[0]?.full_name ?? null
-            : row.patients?.full_name ?? null,
-        }))
+        (consultationsRes.data ?? []).map((row) => {
+          const paciente = row.patients as { full_name: string } | { full_name: string }[] | null;
+          return {
+            id: row.id,
+            consultation_date: row.consultation_date,
+            patient_name: Array.isArray(paciente)
+              ? paciente[0]?.full_name ?? null
+              : paciente?.full_name ?? null,
+          };
+        })
       );
       setFiles(
-        (filesRes.data ?? []).map((row) => ({
-          id: row.id,
-          file_name: row.file_name,
-          is_lab: row.is_lab,
-          created_at: row.created_at,
-          patient_name: Array.isArray(row.patients)
-            ? row.patients[0]?.full_name ?? null
-            : row.patients?.full_name ?? null,
-        }))
+        (filesRes.data ?? []).map((row) => {
+          const paciente = row.patients as { full_name: string } | { full_name: string }[] | null;
+          return {
+            id: row.id,
+            file_name: row.file_name,
+            is_lab: row.is_lab,
+            created_at: row.created_at,
+            patient_name: Array.isArray(paciente)
+              ? paciente[0]?.full_name ?? null
+              : paciente?.full_name ?? null,
+          };
+        })
       );
       setTotals({
         patients: patientsCountRes.count ?? 0,

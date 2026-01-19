@@ -9,6 +9,7 @@ import {
   getFileDownloadUrl,
   updateFileMeta,
   uploadPatientFile,
+  validateFile,
 } from "../lib/files";
 
 const emptyDraft = {
@@ -94,12 +95,12 @@ export default function FilesPage({ patient }: FilesPageProps) {
     if (!draft.file) {
       nextErrors.file = "Selecciona un archivo.";
       hasErrors = true;
-    } else if (
-      draft.file.type !== "application/pdf" &&
-      !draft.file.type.startsWith("image/")
-    ) {
-      nextErrors.file = "Solo se permiten archivos PDF o imagenes.";
-      hasErrors = true;
+    } else {
+      const validationError = validateFile(draft.file);
+      if (validationError) {
+        nextErrors.file = validationError;
+        hasErrors = true;
+      }
     }
 
     if (!draft.description.trim()) {
@@ -116,7 +117,7 @@ export default function FilesPage({ patient }: FilesPageProps) {
     setSaving(true);
     const { error: uploadError } = await uploadPatientFile({
       patientId: selectedPatient.id,
-      file: draft.file,
+      file: draft.file!,
       isLab: draft.is_lab,
       description: draft.description.trim() || null,
     });
@@ -180,7 +181,7 @@ export default function FilesPage({ patient }: FilesPageProps) {
     const { url, error: urlError } = await getFileDownloadUrl(file.file_path);
     if (urlError || !url) {
       setError(urlError);
-      addToast(urlError, "error");
+      addToast(urlError ?? "No se pudo generar el enlace.", "error");
       return;
     }
     window.open(url, "_blank", "noopener,noreferrer");
@@ -190,7 +191,7 @@ export default function FilesPage({ patient }: FilesPageProps) {
     const { url, error: urlError } = await getFileDownloadUrl(file.file_path);
     if (urlError || !url) {
       setError(urlError);
-      addToast(urlError, "error");
+      addToast(urlError ?? "No se pudo generar el enlace.", "error");
       return;
     }
     setPreview({ url, name: file.file_name, mime: file.mime_type });
@@ -224,7 +225,7 @@ export default function FilesPage({ patient }: FilesPageProps) {
             <span className="label-text required">Archivo</span>
             <input
               type="file"
-              accept="application/pdf,image/*"
+              accept="application/pdf,image/jpeg,image/png,image/webp"
               onChange={(event) =>
                 setDraft((current) => ({ ...current, file: event.target.files?.[0] ?? null }))
               }
@@ -234,7 +235,7 @@ export default function FilesPage({ patient }: FilesPageProps) {
           </label>
           {fieldErrors.file ? <span className="field-error">{fieldErrors.file}</span> : null}
           {draft.file ? <p className="muted">Archivo seleccionado: {draft.file.name}</p> : null}
-          {!draft.file ? <p className="help">Solo se permiten archivos PDF o imagenes.</p> : null}
+          {!draft.file ? <p className="help">Solo PDF, JPG, PNG o WebP. Maximo 10MB.</p> : null}
           <label>
             <span className="label-text required">Descripcion breve</span>
             <textarea

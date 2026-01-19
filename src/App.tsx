@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import AuthView from "./components/AuthView";
 import AppHeader from "./components/AppHeader";
 import { ToastProvider } from "./components/ToastProvider";
-import HomePage from "./pages/HomePage";
-import PatientsListPage from "./pages/PatientsListPage";
-import PatientFormPage from "./pages/PatientFormPage";
-import PatientProfilePage from "./pages/PatientProfilePage";
-import ClinicalHistoryPage from "./pages/ClinicalHistoryPage";
-import ConsultationsPage from "./pages/ConsultationsPage";
-import AnthropometryPage from "./pages/AnthropometryPage";
-import FilesPage from "./pages/FilesPage";
 import { useSession } from "./lib/auth";
 import { supabase } from "./lib/supabase";
 import type { UserProfile } from "./lib/types";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const PatientsListPage = lazy(() => import("./pages/PatientsListPage"));
+const PatientFormPage = lazy(() => import("./pages/PatientFormPage"));
+const PatientProfilePage = lazy(() => import("./pages/PatientProfilePage"));
+const ClinicalHistoryPage = lazy(() => import("./pages/ClinicalHistoryPage"));
+const ConsultationsPage = lazy(() => import("./pages/ConsultationsPage"));
+const AnthropometryPage = lazy(() => import("./pages/AnthropometryPage"));
+const FilesPage = lazy(() => import("./pages/FilesPage"));
+
+function CargandoPagina() {
+  return (
+    <div className="centered">
+      <p className="muted">Cargando pagina...</p>
+    </div>
+  );
+}
 
 type RouteKey =
   | "home"
@@ -135,60 +144,62 @@ export default function App() {
             setRoute(nextRoute);
             setPatientFormId(null);
           }}
-          active={route === "patient-form" ? "patients" : route}
+          active={route === "patient-form" || route === "patient-profile" ? "patients" : route}
           theme={theme}
           onToggleTheme={() => {
             setTheme((current) => (current === "dark" ? "light" : "dark"));
           }}
         />
         <main className="app-main">
-          {route === "home" ? (
-            <HomePage
-              onNewPatient={() => {
-                setPatientFormId(null);
-                setRoute("patient-form");
-              }}
-              onNewConsultation={() => setRoute("consultations")}
-              onNewFile={() => setRoute("files")}
-            />
-          ) : null}
-          {route === "patients" ? (
-            <PatientsListPage
-              onAdd={() => {
-                setPatientFormId(null);
-                setRoute("patient-form");
-              }}
-              onEdit={(id) => {
-                setPatientFormId(id);
-                setRoute("patient-form");
-              }}
-              onViewProfile={(id) => {
-                setPatientProfileId(id);
-                setRoute("patient-profile");
-              }}
-            />
-          ) : null}
-          {route === "patient-form" ? (
-            <PatientFormPage
-              patientId={patientFormId}
-              onDone={() => setRoute("patients")}
-              onCancel={() => setRoute("patients")}
-            />
-          ) : null}
-          {route === "patient-profile" && patientProfileId ? (
-            <PatientProfilePage
-              patientId={patientProfileId}
-              onBack={() => setRoute("patients")}
-              onEdit={(id) => {
-                setPatientFormId(id);
-                setRoute("patient-form");
-              }}
-            />
-          ) : null}
-          {route === "clinical-history" ? <ClinicalHistoryPage /> : null}
-          {route === "consultations" ? <ConsultationsPage /> : null}
-          {route === "anthropometry" ? <AnthropometryPage /> : null}
-          {route === "files" ? <FilesPage /> : null}
+          <Suspense fallback={<CargandoPagina />}>
+            {route === "home" ? (
+              <HomePage
+                onNewPatient={() => {
+                  setPatientFormId(null);
+                  setRoute("patient-form");
+                }}
+                onNewConsultation={() => setRoute("consultations")}
+                onNewFile={() => setRoute("files")}
+              />
+            ) : null}
+            {route === "patients" ? (
+              <PatientsListPage
+                onAdd={() => {
+                  setPatientFormId(null);
+                  setRoute("patient-form");
+                }}
+                onEdit={(id) => {
+                  setPatientFormId(id);
+                  setRoute("patient-form");
+                }}
+                onViewProfile={(id) => {
+                  setPatientProfileId(id);
+                  setRoute("patient-profile");
+                }}
+              />
+            ) : null}
+            {route === "patient-form" ? (
+              <PatientFormPage
+                patientId={patientFormId}
+                onDone={() => setRoute("patients")}
+                onCancel={() => setRoute("patients")}
+              />
+            ) : null}
+            {route === "patient-profile" && patientProfileId ? (
+              <PatientProfilePage
+                patientId={patientProfileId}
+                onBack={() => setRoute("patients")}
+                onEdit={(id) => {
+                  setPatientFormId(id);
+                  setRoute("patient-form");
+                }}
+              />
+            ) : null}
+            {route === "clinical-history" ? <ClinicalHistoryPage /> : null}
+            {route === "consultations" ? <ConsultationsPage /> : null}
+            {route === "anthropometry" ? <AnthropometryPage /> : null}
+            {route === "files" ? <FilesPage /> : null}
+          </Suspense>
         </main>
       </div>
     </ToastProvider>
