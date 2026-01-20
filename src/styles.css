@@ -429,17 +429,25 @@ button.btn-icon:hover {
   display: grid;
   gap: 1rem;
   margin-top: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+}
+
+.profile-info > div {
+  min-width: 0;
+  overflow: hidden;
 }
 
 .profile-info span {
   display: block;
   margin-bottom: 0.35rem;
+  font-size: 0.85rem;
 }
 
 .profile-info strong {
   word-break: break-word;
   overflow-wrap: break-word;
+  display: block;
+  font-size: 0.95rem;
 }
 
 .tabs {

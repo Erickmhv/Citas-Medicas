@@ -44,6 +44,14 @@ alter table public.patients add column if not exists is_active boolean not null 
 alter table public.patients add column if not exists updated_at timestamptz;
 alter table public.patients add column if not exists updated_by uuid references auth.users(id);
 alter table public.patients add column if not exists sex text check (sex in ('M', 'F') or sex is null);
+alter table public.patients add column if not exists activity_level text check (activity_level is null or activity_level in ('sedentary', 'light', 'moderate', 'active', 'very_active'));
+
+-- Validaciones de formato para patients
+alter table public.patients drop constraint if exists patients_phone_format;
+alter table public.patients add constraint patients_phone_format check (phone is null or phone ~ '^[0-9\s\+\-\(\)]+$');
+
+alter table public.patients drop constraint if exists patients_email_format;
+alter table public.patients add constraint patients_email_format check (email is null or email ~ '^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
 create or replace function public.set_patient_audit_fields()
 returns trigger
@@ -198,6 +206,28 @@ alter table public.anthropometric_records add column if not exists body_fat_pct 
 alter table public.anthropometric_records add column if not exists lean_mass_pct numeric;
 alter table public.anthropometric_records add column if not exists arm_circumference_cm numeric;
 alter table public.anthropometric_records add column if not exists observations text;
+
+-- Validaciones de rangos para anthropometric_records
+alter table public.anthropometric_records drop constraint if exists anthropometric_weight_positive;
+alter table public.anthropometric_records add constraint anthropometric_weight_positive check (weight_kg is null or weight_kg > 0);
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_height_positive;
+alter table public.anthropometric_records add constraint anthropometric_height_positive check (height_cm is null or height_cm > 0);
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_waist_positive;
+alter table public.anthropometric_records add constraint anthropometric_waist_positive check (waist_cm is null or waist_cm > 0);
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_hip_positive;
+alter table public.anthropometric_records add constraint anthropometric_hip_positive check (hip_cm is null or hip_cm > 0);
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_body_fat_range;
+alter table public.anthropometric_records add constraint anthropometric_body_fat_range check (body_fat_pct is null or (body_fat_pct >= 0 and body_fat_pct <= 100));
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_lean_mass_range;
+alter table public.anthropometric_records add constraint anthropometric_lean_mass_range check (lean_mass_pct is null or (lean_mass_pct >= 0 and lean_mass_pct <= 100));
+
+alter table public.anthropometric_records drop constraint if exists anthropometric_arm_positive;
+alter table public.anthropometric_records add constraint anthropometric_arm_positive check (arm_circumference_cm is null or arm_circumference_cm > 0);
 
 create table if not exists public.lab_results (
   id uuid primary key default gen_random_uuid(),
