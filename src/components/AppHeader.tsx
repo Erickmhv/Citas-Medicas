@@ -78,32 +78,33 @@ export default function AppHeader({
     <header className="app-header">
       <div>
         <h1>Citas Medicas</h1>
-        <p className="muted">Hola, {displayName}</p>
+        <p className="muted small">Hola, {displayName}</p>
       </div>
-      <button
-        type="button"
-        className="menu-toggle"
-        onClick={() => setMenuOpen((prev) => !prev)}
-        aria-expanded={menuOpen}
-        aria-label="Abrir menu"
-      >
-        <span className="hamburger-icon">
-          <span />
-          <span />
-          <span />
-        </span>
-      </button>
-      <div
-        className={`menu-overlay ${menuOpen ? "is-open" : ""}`}
-        onClick={() => setMenuOpen(false)}
-      >
-        <nav className="app-nav" onClick={(event) => event.stopPropagation()}>
-          <div className="menu-header">
-            <span className="muted">Menu</span>
-            <button type="button" className="link" onClick={() => setMenuOpen(false)}>
-              Cerrar
-            </button>
-          </div>
+      <div className="app-header-controls">
+        <button
+          type="button"
+          className="menu-toggle"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-expanded={menuOpen}
+          aria-label="Abrir menu"
+        >
+          <span className="hamburger-icon">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+        <div
+          className={`menu-overlay ${menuOpen ? "is-open" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          <nav className="app-nav" onClick={(event) => event.stopPropagation()}>
+            <div className="menu-header">
+              <span className="muted">Menu</span>
+              <button type="button" className="link" onClick={() => setMenuOpen(false)}>
+                Cerrar
+              </button>
+            </div>
         <button
           type="button"
           className={active === "home" ? "active" : ""}
@@ -153,28 +154,29 @@ export default function AppHeader({
         >
           Archivos
         </button>
-        </nav>
-      </div>
-      <div className="app-user" ref={settingsRef}>
-        <button
-          type="button"
-          className="settings-toggle"
-          onClick={() => setSettingsOpen((prev) => !prev)}
-          aria-expanded={settingsOpen}
-          aria-label="Abrir configuracion"
-        >
-          ⚙
-        </button>
-        {settingsOpen ? (
-          <div className="settings-panel">
-            <button type="button" className="theme-toggle" onClick={onToggleTheme}>
-              {theme === "dark" ? "Modo claro" : "Modo oscuro"}
-            </button>
-            <button type="button" onClick={() => supabase.auth.signOut()}>
-              Cerrar sesion
-            </button>
-          </div>
-        ) : null}
+          </nav>
+        </div>
+        <div className="app-user" ref={settingsRef}>
+          <button
+            type="button"
+            className="settings-toggle"
+            onClick={() => setSettingsOpen((prev) => !prev)}
+            aria-expanded={settingsOpen}
+            aria-label="Abrir configuracion"
+          >
+            ⚙
+          </button>
+          {settingsOpen ? (
+            <div className="settings-panel">
+              <button type="button" className="theme-toggle" onClick={onToggleTheme}>
+                {theme === "dark" ? "Modo claro" : "Modo oscuro"}
+              </button>
+              <button type="button" onClick={() => supabase.auth.signOut()}>
+                Cerrar sesion
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </header>
   );
