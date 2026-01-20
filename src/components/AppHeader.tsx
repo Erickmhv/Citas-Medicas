@@ -105,55 +105,55 @@ export default function AppHeader({
                 Cerrar
               </button>
             </div>
-        <button
-          type="button"
-          className={active === "home" ? "active" : ""}
-          onClick={() => handleNavigate("home")}
-        >
-          Resumen
-        </button>
-        <button
-          type="button"
-          className={active === "patients" ? "active" : ""}
-          onClick={() => handleNavigate("patients")}
-        >
-          Pacientes
-        </button>
-        <button
-          type="button"
-          className={active === "clinical-history" ? "active" : ""}
-          onClick={() => handleNavigate("clinical-history")}
-        >
-          Historia clinica
-        </button>
-        <button
-          type="button"
-          className={active === "anthropometry" ? "active" : ""}
-          onClick={() => handleNavigate("anthropometry")}
-        >
-          Antropometria
-        </button>
-        <button
-          type="button"
-          className={active === "consultations" ? "active" : ""}
-          onClick={() => handleNavigate("consultations")}
-        >
-          Consultas
-        </button>
-        <button
-          type="button"
-          className={active === "lab-results" ? "active" : ""}
-          onClick={() => handleNavigate("lab-results")}
-        >
-          Laboratorios
-        </button>
-        <button
-          type="button"
-          className={active === "files" ? "active" : ""}
-          onClick={() => handleNavigate("files")}
-        >
-          Archivos
-        </button>
+            <button
+              type="button"
+              className={active === "home" ? "active" : ""}
+              onClick={() => handleNavigate("home")}
+            >
+              Inicio
+            </button>
+            <button
+              type="button"
+              className={active === "patients" ? "active" : ""}
+              onClick={() => handleNavigate("patients")}
+            >
+              Pacientes
+            </button>
+            <button
+              type="button"
+              className={active === "clinical-history" ? "active" : ""}
+              onClick={() => handleNavigate("clinical-history")}
+            >
+              Historia
+            </button>
+            <button
+              type="button"
+              className={active === "anthropometry" ? "active" : ""}
+              onClick={() => handleNavigate("anthropometry")}
+            >
+              Medidas
+            </button>
+            <button
+              type="button"
+              className={active === "consultations" ? "active" : ""}
+              onClick={() => handleNavigate("consultations")}
+            >
+              Consultas
+            </button>
+            <button
+              type="button"
+              className={active === "lab-results" ? "active" : ""}
+              onClick={() => handleNavigate("lab-results")}
+            >
+              Labs
+            </button>
+            <button
+              type="button"
+              className={active === "files" ? "active" : ""}
+              onClick={() => handleNavigate("files")}
+            >
+              Archivos
+            </button>
           </nav>
         </div>
         <div className="app-user" ref={settingsRef}>

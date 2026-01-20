@@ -96,21 +96,35 @@ button:not(.link):hover {
 }
 
 .app-header {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr auto;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 2rem 3.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem 0.75rem;
+}
+
+.app-header > div:first-child {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .app-header h1 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.15rem;
+}
+
+.app-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app-nav {
   display: flex;
-  gap: 0.75rem;
-  justify-self: center;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .menu-overlay {
@@ -122,10 +136,6 @@ button:not(.link):hover {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-}
-
-.app-header-controls {
-  display: contents;
 }
 
 .menu-toggle {
@@ -159,10 +169,11 @@ button:not(.link):hover {
 .app-nav button {
   border: 1px solid transparent;
   background: transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.85rem;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 0.9rem;
 }
 
 .app-nav button.active,
@@ -194,12 +205,12 @@ button:not(.link):hover {
 
 .settings-toggle {
   border-radius: 999px;
-  width: 56px;
-  height: 56px;
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 .settings-panel {
@@ -897,32 +908,15 @@ button.btn-icon:hover {
 
 @media (max-width: 900px) {
   .app-header {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
     padding: 1rem 1rem 0.5rem;
   }
 
-  .app-header > div:first-child {
-    text-align: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
   .app-header h1 {
-    font-size: 1.4rem;
-    margin-bottom: 0.2rem;
+    font-size: 1.35rem;
   }
 
-  .app-header .muted {
-    font-size: 0.85rem;
-  }
-
-  .app-header-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .app-nav {
+    display: none;
   }
 
   .menu-toggle {
@@ -953,9 +947,9 @@ button.btn-icon:hover {
     display: flex;
   }
 
-  .app-nav {
+  .menu-overlay .app-nav {
     display: flex;
-    width: min(320px, 95%);
+    width: min(300px, 95%);
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
@@ -966,14 +960,9 @@ button.btn-icon:hover {
     box-shadow: var(--shadow);
   }
 
-  .app-nav button {
+  .menu-overlay .app-nav button {
     font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
-  }
-
-  .app-user {
-    display: flex;
-    gap: 0.5rem;
+    padding: 0.55rem 0.8rem;
   }
 
   .app-main {
