@@ -43,6 +43,7 @@ create table if not exists public.patients (
 alter table public.patients add column if not exists is_active boolean not null default true;
 alter table public.patients add column if not exists updated_at timestamptz;
 alter table public.patients add column if not exists updated_by uuid references auth.users(id);
+alter table public.patients add column if not exists sex text check (sex in ('M', 'F') or sex is null);
 
 create or replace function public.set_patient_audit_fields()
 returns trigger
@@ -193,6 +194,10 @@ create table if not exists public.anthropometric_records (
 alter table public.anthropometric_records add column if not exists is_active boolean not null default true;
 alter table public.anthropometric_records add column if not exists updated_at timestamptz;
 alter table public.anthropometric_records add column if not exists updated_by uuid references auth.users(id);
+alter table public.anthropometric_records add column if not exists body_fat_pct numeric;
+alter table public.anthropometric_records add column if not exists lean_mass_pct numeric;
+alter table public.anthropometric_records add column if not exists arm_circumference_cm numeric;
+alter table public.anthropometric_records add column if not exists observations text;
 
 create table if not exists public.lab_results (
   id uuid primary key default gen_random_uuid(),
@@ -201,8 +206,27 @@ create table if not exists public.lab_results (
   result_date date not null default current_date,
   result_data jsonb,
   notes text,
-  created_at timestamptz not null default now()
+  is_active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz,
+  updated_by uuid references auth.users(id)
 );
+
+alter table public.lab_results add column if not exists is_active boolean not null default true;
+alter table public.lab_results add column if not exists updated_at timestamptz;
+alter table public.lab_results add column if not exists updated_by uuid references auth.users(id);
+
+drop trigger if exists lab_results_set_audit_fields on public.lab_results;
+create trigger lab_results_set_audit_fields
+before insert or update on public.lab_results
+for each row
+execute function public.set_common_audit_fields();
+
+drop trigger if exists lab_results_audit on public.lab_results;
+create trigger lab_results_audit
+after insert or update or delete on public.lab_results
+for each row
+execute function public.log_patient_audit();
 
 create table if not exists public.consultations (
   id uuid primary key default gen_random_uuid(),

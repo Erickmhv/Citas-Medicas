@@ -13,6 +13,8 @@ type PatientDraft = {
   email: string;
   phone: string;
   date_of_birth: string;
+  sex: string;
+  activity_level: string;
 };
 
 const emptyDraft: PatientDraft = {
@@ -20,7 +22,18 @@ const emptyDraft: PatientDraft = {
   email: "",
   phone: "",
   date_of_birth: "",
+  sex: "",
+  activity_level: "",
 };
+
+const activityLevelOptions = [
+  { value: "", label: "Sin especificar" },
+  { value: "sedentary", label: "Sedentario (poco o nada de ejercicio)" },
+  { value: "light", label: "Ligeramente activo (ejercicio 1-3 dias/semana)" },
+  { value: "moderate", label: "Moderadamente activo (ejercicio 3-5 dias/semana)" },
+  { value: "active", label: "Muy activo (ejercicio 6-7 dias/semana)" },
+  { value: "very_active", label: "Extra activo (ejercicio intenso, trabajo fisico)" },
+];
 
 export default function PatientFormPage({ patientId, onDone, onCancel }: PatientFormPageProps) {
   const [draft, setDraft] = useState<PatientDraft>(emptyDraft);
@@ -32,6 +45,8 @@ export default function PatientFormPage({ patientId, onDone, onCancel }: Patient
     email: "",
     phone: "",
     date_of_birth: "",
+    sex: "",
+    activity_level: "",
   });
   const { addToast } = useToast();
 
@@ -56,6 +71,8 @@ export default function PatientFormPage({ patientId, onDone, onCancel }: Patient
           email: data.email ?? "",
           phone: data.phone ?? "",
           date_of_birth: data.date_of_birth ?? "",
+          sex: data.sex ?? "",
+          activity_level: data.activity_level ?? "",
         });
       }
       setLoading(false);
@@ -73,10 +90,10 @@ export default function PatientFormPage({ patientId, onDone, onCancel }: Patient
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
-    setFieldErrors({ full_name: "", email: "", phone: "", date_of_birth: "" });
+    setFieldErrors({ full_name: "", email: "", phone: "", date_of_birth: "", sex: "", activity_level: "" });
 
     let hasErrors = false;
-    const nextErrors = { full_name: "", email: "", phone: "", date_of_birth: "" };
+    const nextErrors = { full_name: "", email: "", phone: "", date_of_birth: "", sex: "", activity_level: "" };
 
     if (!draft.full_name.trim()) {
       nextErrors.full_name = "El nombre completo es obligatorio.";
@@ -112,11 +129,16 @@ export default function PatientFormPage({ patientId, onDone, onCancel }: Patient
 
     setSaving(true);
 
+    const sexValue = draft.sex === "M" || draft.sex === "F" ? draft.sex : null;
+    const validActivityLevels = ["sedentary", "light", "moderate", "active", "very_active"];
+    const activityValue = validActivityLevels.includes(draft.activity_level) ? draft.activity_level : null;
     const payload = {
       full_name: draft.full_name.trim(),
       email: draft.email.trim() || null,
       phone: draft.phone.trim() || null,
       date_of_birth: draft.date_of_birth || null,
+      sex: sexValue as "M" | "F" | null,
+      activity_level: activityValue as "sedentary" | "light" | "moderate" | "active" | "very_active" | null,
     };
 
     const { error: actionError } = patientId
@@ -202,6 +224,36 @@ export default function PatientFormPage({ patientId, onDone, onCancel }: Patient
             {fieldErrors.date_of_birth ? (
               <span className="field-error">{fieldErrors.date_of_birth}</span>
             ) : null}
+          </label>
+          <label>
+            <span className="label-text">Sexo</span>
+            <select
+              value={draft.sex}
+              onChange={(event) => onDraftChange("sex", event.target.value)}
+              className={fieldErrors.sex ? "input-error" : ""}
+            >
+              <option value="">Sin especificar</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+            <span className="help">Necesario para calculos de requerimiento calorico.</span>
+            {fieldErrors.sex ? <span className="field-error">{fieldErrors.sex}</span> : null}
+          </label>
+          <label>
+            <span className="label-text">Nivel de actividad</span>
+            <select
+              value={draft.activity_level}
+              onChange={(event) => onDraftChange("activity_level", event.target.value)}
+              className={fieldErrors.activity_level ? "input-error" : ""}
+            >
+              {activityLevelOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <span className="help">Usado para calcular requerimiento energetico estimado (REE).</span>
+            {fieldErrors.activity_level ? <span className="field-error">{fieldErrors.activity_level}</span> : null}
           </label>
           <div className="form-actions">
             <button type="submit" disabled={saving}>

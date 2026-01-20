@@ -1,11 +1,13 @@
 import { supabase } from "./supabase";
-import type { Patient } from "./types";
+import type { ActivityLevel, Patient, PatientSex } from "./types";
 
 type PatientInsert = {
   full_name: string;
   email: string | null;
   phone: string | null;
   date_of_birth: string | null;
+  sex: PatientSex | null;
+  activity_level: ActivityLevel | null;
 };
 
 type PatientUpdate = {
@@ -13,10 +15,12 @@ type PatientUpdate = {
   email: string | null;
   phone: string | null;
   date_of_birth: string | null;
+  sex: PatientSex | null;
+  activity_level: ActivityLevel | null;
 };
 
 const baseSelect =
-  "id, clinic_id, full_name, email, phone, date_of_birth, created_at, updated_at, updated_by, is_active";
+  "id, clinic_id, full_name, email, phone, date_of_birth, sex, activity_level, created_at, updated_at, updated_by, is_active";
 
 type FetchPatientsParams = {
   query: string;

@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import type { AnthropometricRecord } from "./types";
+import type { ActivityLevel, AnthropometricRecord, PatientSex } from "./types";
 
 type AnthropometryPayload = {
   recorded_at: string;
@@ -7,10 +7,14 @@ type AnthropometryPayload = {
   height_cm: number | null;
   waist_cm: number | null;
   hip_cm: number | null;
+  body_fat_pct: number | null;
+  lean_mass_pct: number | null;
+  arm_circumference_cm: number | null;
+  observations: string | null;
 };
 
 const baseSelect =
-  "id, clinic_id, patient_id, recorded_at, weight_kg, height_cm, waist_cm, hip_cm, is_active, created_at, updated_at, updated_by";
+  "id, clinic_id, patient_id, recorded_at, weight_kg, height_cm, waist_cm, hip_cm, body_fat_pct, lean_mass_pct, arm_circumference_cm, observations, is_active, created_at, updated_at, updated_by";
 
 type Formula = {
   key: string;
@@ -116,4 +120,87 @@ export async function deactivateAnthropometry(id: string) {
   }
 
   return { error: null };
+}
+
+/**
+ * Factores de actividad para calculo de REE
+ */
+export const activityFactors: Record<ActivityLevel, { factor: number; label: string }> = {
+  sedentary: { factor: 1.2, label: "Sedentario" },
+  light: { factor: 1.375, label: "Ligeramente activo" },
+  moderate: { factor: 1.55, label: "Moderadamente activo" },
+  active: { factor: 1.725, label: "Muy activo" },
+  very_active: { factor: 1.9, label: "Extra activo" },
+};
+
+type TmbParams = {
+  weightKg: number;
+  heightCm: number;
+  ageYears: number;
+  sex: PatientSex;
+};
+
+/**
+ * Calcula la Tasa Metabolica Basal (TMB) usando la formula de Mifflin-St Jeor
+ * - Hombres: TMB = (10 x peso) + (6.25 x altura) - (5 x edad) + 5
+ * - Mujeres: TMB = (10 x peso) + (6.25 x altura) - (5 x edad) - 161
+ */
+export function calculateTmb({ weightKg, heightCm, ageYears, sex }: TmbParams): number | null {
+  if (weightKg <= 0 || heightCm <= 0 || ageYears <= 0) {
+    return null;
+  }
+
+  const baseTmb = (10 * weightKg) + (6.25 * heightCm) - (5 * ageYears);
+
+  if (sex === "M") {
+    return baseTmb + 5;
+  }
+  if (sex === "F") {
+    return baseTmb - 161;
+  }
+
+  return null;
+}
+
+type ReeParams = TmbParams & {
+  activityLevel: ActivityLevel;
+};
+
+/**
+ * Calcula el Requerimiento Energetico Estimado (REE)
+ * REE = TMB x factor_actividad
+ */
+export function calculateRee(params: ReeParams): number | null {
+  const tmb = calculateTmb(params);
+  if (tmb === null) {
+    return null;
+  }
+
+  const factor = activityFactors[params.activityLevel]?.factor;
+  if (!factor) {
+    return null;
+  }
+
+  return tmb * factor;
+}
+
+/**
+ * Calcula la edad en anos a partir de la fecha de nacimiento
+ */
+export function calculateAge(dateOfBirth: string): number | null {
+  if (!dateOfBirth) {
+    return null;
+  }
+
+  const birth = new Date(dateOfBirth);
+  const today = new Date();
+
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+
+  return age > 0 ? age : null;
 }

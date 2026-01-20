@@ -13,6 +13,7 @@ const PatientProfilePage = lazy(() => import("./pages/PatientProfilePage"));
 const ClinicalHistoryPage = lazy(() => import("./pages/ClinicalHistoryPage"));
 const ConsultationsPage = lazy(() => import("./pages/ConsultationsPage"));
 const AnthropometryPage = lazy(() => import("./pages/AnthropometryPage"));
+const LabResultsPage = lazy(() => import("./pages/LabResultsPage"));
 const FilesPage = lazy(() => import("./pages/FilesPage"));
 
 function CargandoPagina() {
@@ -31,6 +32,7 @@ type RouteKey =
   | "clinical-history"
   | "consultations"
   | "anthropometry"
+  | "lab-results"
   | "files";
 
 export default function App() {
@@ -198,6 +200,7 @@ export default function App() {
             {route === "clinical-history" ? <ClinicalHistoryPage /> : null}
             {route === "consultations" ? <ConsultationsPage /> : null}
             {route === "anthropometry" ? <AnthropometryPage /> : null}
+            {route === "lab-results" ? <LabResultsPage /> : null}
             {route === "files" ? <FilesPage /> : null}
           </Suspense>
         </main>

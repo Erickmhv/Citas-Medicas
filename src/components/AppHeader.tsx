@@ -10,6 +10,7 @@ type AppHeaderProps = {
       | "clinical-history"
       | "consultations"
       | "anthropometry"
+      | "lab-results"
       | "files"
   ) => void;
   active:
@@ -18,6 +19,7 @@ type AppHeaderProps = {
     | "clinical-history"
     | "consultations"
     | "anthropometry"
+    | "lab-results"
     | "files";
   theme: "light" | "dark";
   onToggleTheme: () => void;
@@ -64,6 +66,7 @@ export default function AppHeader({
       | "clinical-history"
       | "consultations"
       | "anthropometry"
+      | "lab-results"
       | "files"
   ) => {
     onNavigate(next);
@@ -84,7 +87,11 @@ export default function AppHeader({
         aria-expanded={menuOpen}
         aria-label="Abrir menu"
       >
-        Menu
+        <span className="hamburger-icon">
+          <span />
+          <span />
+          <span />
+        </span>
       </button>
       <div
         className={`menu-overlay ${menuOpen ? "is-open" : ""}`}
@@ -131,6 +138,13 @@ export default function AppHeader({
           onClick={() => handleNavigate("consultations")}
         >
           Consultas
+        </button>
+        <button
+          type="button"
+          className={active === "lab-results" ? "active" : ""}
+          onClick={() => handleNavigate("lab-results")}
+        >
+          Laboratorios
         </button>
         <button
           type="button"

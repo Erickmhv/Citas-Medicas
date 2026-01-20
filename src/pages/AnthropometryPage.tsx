@@ -3,7 +3,11 @@ import { EditIcon, TrashIcon } from "../components/Icons";
 import PatientPicker from "../components/PatientPicker";
 import type { AnthropometricRecord, Patient } from "../lib/types";
 import {
+  activityFactors,
+  calculateAge,
   calculateAnthropometry,
+  calculateRee,
+  calculateTmb,
   createAnthropometry,
   deactivateAnthropometry,
   fetchAnthropometry,
@@ -23,6 +27,10 @@ type Draft = {
   height_cm: string;
   waist_cm: string;
   hip_cm: string;
+  body_fat_pct: string;
+  lean_mass_pct: string;
+  arm_circumference_cm: string;
+  observations: string;
 };
 
 const emptyDraft: Draft = {
@@ -31,6 +39,10 @@ const emptyDraft: Draft = {
   height_cm: "",
   waist_cm: "",
   hip_cm: "",
+  body_fat_pct: "",
+  lean_mass_pct: "",
+  arm_circumference_cm: "",
+  observations: "",
 };
 
 function toNumber(value: string) {
@@ -57,6 +69,10 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
     height_cm: "",
     waist_cm: "",
     hip_cm: "",
+    body_fat_pct: "",
+    lean_mass_pct: "",
+    arm_circumference_cm: "",
+    observations: "",
   });
   const { addToast } = useToast();
 
@@ -67,10 +83,56 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
       height_cm: toNumber(draft.height_cm),
       waist_cm: toNumber(draft.waist_cm),
       hip_cm: toNumber(draft.hip_cm),
+      body_fat_pct: toNumber(draft.body_fat_pct),
+      lean_mass_pct: toNumber(draft.lean_mass_pct),
+      arm_circumference_cm: toNumber(draft.arm_circumference_cm),
+      observations: draft.observations.trim() || null,
     });
   }, [draft]);
 
   const formatMetric = (value: number | null) => (value === null ? "-" : value.toFixed(2));
+
+  // Calculo de TMB y REE basado en el registro mas reciente y datos del paciente
+  const energyMetrics = useMemo(() => {
+    const latestRecord = records[0];
+    if (!selectedPatient || !latestRecord) {
+      return { tmb: null, ree: null, canCalculate: false, missingFields: [] as string[] };
+    }
+
+    const missingFields: string[] = [];
+
+    if (!latestRecord.weight_kg) missingFields.push("peso");
+    if (!latestRecord.height_cm) missingFields.push("altura");
+    if (!selectedPatient.date_of_birth) missingFields.push("fecha de nacimiento");
+    if (!selectedPatient.sex) missingFields.push("sexo");
+    if (!selectedPatient.activity_level) missingFields.push("nivel de actividad");
+
+    if (missingFields.length > 0) {
+      return { tmb: null, ree: null, canCalculate: false, missingFields };
+    }
+
+    const age = calculateAge(selectedPatient.date_of_birth!);
+    if (!age) {
+      return { tmb: null, ree: null, canCalculate: false, missingFields: ["edad valida"] };
+    }
+
+    const tmb = calculateTmb({
+      weightKg: latestRecord.weight_kg!,
+      heightCm: latestRecord.height_cm!,
+      ageYears: age,
+      sex: selectedPatient.sex!,
+    });
+
+    const ree = calculateRee({
+      weightKg: latestRecord.weight_kg!,
+      heightCm: latestRecord.height_cm!,
+      ageYears: age,
+      sex: selectedPatient.sex!,
+      activityLevel: selectedPatient.activity_level!,
+    });
+
+    return { tmb, ree, canCalculate: true, missingFields: [] };
+  }, [records, selectedPatient]);
 
   const loadRecords = async (patientId: string) => {
     setLoading(true);
@@ -108,7 +170,7 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
-    setFieldErrors({ recorded_at: "", weight_kg: "", height_cm: "", waist_cm: "", hip_cm: "" });
+    setFieldErrors({ recorded_at: "", weight_kg: "", height_cm: "", waist_cm: "", hip_cm: "", body_fat_pct: "", lean_mass_pct: "", arm_circumference_cm: "", observations: "" });
 
     if (!selectedPatient?.id) {
       setError("Selecciona un paciente primero.");
@@ -116,7 +178,7 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
     }
 
     let hasErrors = false;
-    const nextErrors = { recorded_at: "", weight_kg: "", height_cm: "", waist_cm: "", hip_cm: "" };
+    const nextErrors = { recorded_at: "", weight_kg: "", height_cm: "", waist_cm: "", hip_cm: "", body_fat_pct: "", lean_mass_pct: "", arm_circumference_cm: "", observations: "" };
 
     if (!draft.recorded_at) {
       nextErrors.recorded_at = "La fecha del registro es obligatoria.";
@@ -157,6 +219,10 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
       height_cm: toNumber(draft.height_cm),
       waist_cm: toNumber(draft.waist_cm),
       hip_cm: toNumber(draft.hip_cm),
+      body_fat_pct: toNumber(draft.body_fat_pct),
+      lean_mass_pct: toNumber(draft.lean_mass_pct),
+      arm_circumference_cm: toNumber(draft.arm_circumference_cm),
+      observations: draft.observations.trim() || null,
     };
 
     const { error: actionError } = editingId
@@ -183,6 +249,10 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
       height_cm: record.height_cm?.toString() ?? "",
       waist_cm: record.waist_cm?.toString() ?? "",
       hip_cm: record.hip_cm?.toString() ?? "",
+      body_fat_pct: record.body_fat_pct?.toString() ?? "",
+      lean_mass_pct: record.lean_mass_pct?.toString() ?? "",
+      arm_circumference_cm: record.arm_circumference_cm?.toString() ?? "",
+      observations: record.observations ?? "",
     });
     setEditingId(record.id);
   };
@@ -225,6 +295,12 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
 
       <div className="card">
         <h3>{editingId ? "Editar registro" : "Nuevo registro"}</h3>
+        {!selectedPatient?.id ? (
+          <div className="alert alert-warning">
+            <strong>Paciente no seleccionado</strong>
+            <p>Selecciona un paciente en la seccion superior para registrar mediciones antropometricas.</p>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="form-grid">
           <label>
             <span className="label-text required">Fecha de registro</span>
@@ -287,6 +363,54 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
             <span className="help">Ej: 92</span>
             {fieldErrors.hip_cm ? <span className="field-error">{fieldErrors.hip_cm}</span> : null}
           </label>
+          <label>
+            <span className="label-text">Circunferencia braquial (cm)</span>
+            <input
+              type="number"
+              step="0.1"
+              value={draft.arm_circumference_cm}
+              onChange={(event) => setDraft((current) => ({ ...current, arm_circumference_cm: event.target.value }))}
+              className={fieldErrors.arm_circumference_cm ? "input-error" : ""}
+            />
+            <span className="help">Ej: 30</span>
+            {fieldErrors.arm_circumference_cm ? <span className="field-error">{fieldErrors.arm_circumference_cm}</span> : null}
+          </label>
+          <label>
+            <span className="label-text">% Grasa corporal</span>
+            <input
+              type="number"
+              step="0.1"
+              value={draft.body_fat_pct}
+              onChange={(event) => setDraft((current) => ({ ...current, body_fat_pct: event.target.value }))}
+              className={fieldErrors.body_fat_pct ? "input-error" : ""}
+            />
+            <span className="help">Ej: 25.5</span>
+            {fieldErrors.body_fat_pct ? <span className="field-error">{fieldErrors.body_fat_pct}</span> : null}
+          </label>
+          <label>
+            <span className="label-text">% Masa magra</span>
+            <input
+              type="number"
+              step="0.1"
+              value={draft.lean_mass_pct}
+              onChange={(event) => setDraft((current) => ({ ...current, lean_mass_pct: event.target.value }))}
+              className={fieldErrors.lean_mass_pct ? "input-error" : ""}
+            />
+            <span className="help">Ej: 74.5</span>
+            {fieldErrors.lean_mass_pct ? <span className="field-error">{fieldErrors.lean_mass_pct}</span> : null}
+          </label>
+          <label className="full-width">
+            <span className="label-text">Observaciones</span>
+            <textarea
+              rows={2}
+              value={draft.observations}
+              onChange={(event) => setDraft((current) => ({ ...current, observations: event.target.value }))}
+              placeholder="Notas adicionales sobre las mediciones..."
+              className={fieldErrors.observations ? "input-error" : ""}
+            />
+            <span className="help">Contexto o comentarios sobre las mediciones.</span>
+            {fieldErrors.observations ? <span className="field-error">{fieldErrors.observations}</span> : null}
+          </label>
           <div className="form-actions">
             <button type="submit" disabled={saving}>
               {saving ? "Guardando..." : editingId ? "Actualizar" : "Guardar"}
@@ -298,21 +422,53 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
             ) : null}
           </div>
         </form>
-        <div className="divider" />
-        <div className="metrics-header">
-          <h4>Calculos automaticos</h4>
-          <span className="muted">Se actualizan al escribir</span>
-        </div>
-        <div className="metrics">
-          {previewMetrics.map((metric) => (
-            <div key={metric.key} className="metric-card">
-              <span className="muted">{metric.label}</span>
-              <strong>
-                {formatMetric(metric.value)} {metric.unit}
-              </strong>
+        )}
+        {selectedPatient?.id ? (
+          <>
+            <div className="divider" />
+            <div className="metrics-header">
+              <h4>Calculos automaticos</h4>
+              <span className="muted">Se actualizan al escribir</span>
             </div>
-          ))}
-        </div>
+            <div className="metrics">
+              {previewMetrics.map((metric) => (
+                <div key={metric.key} className="metric-card">
+                  <span className="muted">{metric.label}</span>
+                  <strong>
+                    {formatMetric(metric.value)} {metric.unit}
+                  </strong>
+                </div>
+              ))}
+            </div>
+            <div className="divider" />
+            <div className="metrics-header">
+              <h4>Requerimiento Energetico</h4>
+              <span className="muted">Formula Mifflin-St Jeor</span>
+            </div>
+            {energyMetrics.canCalculate ? (
+              <div className="metrics">
+                <div className="metric-card">
+                  <span className="muted">TMB (Tasa Metabolica Basal)</span>
+                  <strong>{energyMetrics.tmb?.toFixed(0) ?? "-"} kcal/dia</strong>
+                </div>
+                <div className="metric-card">
+                  <span className="muted">
+                    REE ({activityFactors[selectedPatient.activity_level!]?.label})
+                  </span>
+                  <strong>{energyMetrics.ree?.toFixed(0) ?? "-"} kcal/dia</strong>
+                </div>
+              </div>
+            ) : records.length === 0 ? (
+              <p className="muted">Agrega un registro antropometrico para calcular el requerimiento energetico.</p>
+            ) : (
+              <p className="muted">
+                Faltan datos del paciente para calcular: {energyMetrics.missingFields.join(", ")}.
+                Edita el perfil del paciente para completarlos.
+              </p>
+            )}
+          </>
+        ) : null}
+
         {error ? <p className="error">{error}</p> : null}
       </div>
 
@@ -345,6 +501,9 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
               <span>Altura</span>
               <span>Cintura</span>
               <span>Cadera</span>
+              <span>Braquial</span>
+              <span>% Grasa</span>
+              <span>% Magra</span>
               <span>IMC</span>
               <span>RC/CC</span>
               <span>RC/Alt</span>
@@ -357,6 +516,10 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
                 height_cm: record.height_cm,
                 waist_cm: record.waist_cm,
                 hip_cm: record.hip_cm,
+                body_fat_pct: record.body_fat_pct,
+                lean_mass_pct: record.lean_mass_pct,
+                arm_circumference_cm: record.arm_circumference_cm,
+                observations: record.observations,
               });
               const bmi = metrics.find((metric) => metric.key === "bmi")?.value ?? null;
               const waistHip =
@@ -373,31 +536,34 @@ export default function AnthropometryPage({ patient }: AnthropometryPageProps) {
                   <span data-label="Altura">{record.height_cm ?? "-"}</span>
                   <span data-label="Cintura">{record.waist_cm ?? "-"}</span>
                   <span data-label="Cadera">{record.hip_cm ?? "-"}</span>
+                  <span data-label="Braquial">{record.arm_circumference_cm ?? "-"}</span>
+                  <span data-label="% Grasa">{record.body_fat_pct ?? "-"}</span>
+                  <span data-label="% Magra">{record.lean_mass_pct ?? "-"}</span>
                   <span data-label="IMC">{formatMetric(bmi)}</span>
                   <span data-label="RC/CC">{formatMetric(waistHip)}</span>
                   <span data-label="RC/Alt">{formatMetric(waistHeight)}</span>
                   <span className="table-actions" data-label="Acciones">
-                  <button
-                    type="button"
-                    className="btn-success btn-action"
-                    onClick={() => startEdit(record)}
-                    disabled={saving}
-                  >
-                    <EditIcon />
-                    Editar
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-danger btn-action"
-                    onClick={() => handleDeactivate(record)}
-                    disabled={saving}
-                  >
-                    <TrashIcon />
-                    Eliminar
-                  </button>
-                </span>
-              </div>
-            );
+                    <button
+                      type="button"
+                      className="btn-success btn-action"
+                      onClick={() => startEdit(record)}
+                      disabled={saving}
+                    >
+                      <EditIcon />
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      className="btn-danger btn-action"
+                      onClick={() => handleDeactivate(record)}
+                      disabled={saving}
+                    >
+                      <TrashIcon />
+                      Eliminar
+                    </button>
+                  </span>
+                </div>
+              );
             })}
           </div>
         )}

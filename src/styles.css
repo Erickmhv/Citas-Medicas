@@ -12,6 +12,8 @@
   --success-dark: #255b50;
   --danger: #b85656;
   --danger-dark: #933f3f;
+  --warning: #c9a227;
+  --warning-bg: #fef9e7;
   --border: #e2e4ea;
   --shadow: 0 18px 45px rgba(27, 24, 20, 0.08);
 }
@@ -28,6 +30,8 @@ html[data-theme="dark"] {
   --success-dark: #2f7566;
   --danger: #de7777;
   --danger-dark: #b85656;
+  --warning: #e6b93d;
+  --warning-bg: #2a2510;
   --border: #2b3240;
   --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
@@ -123,6 +127,29 @@ button:not(.link):hover {
 .menu-toggle {
   display: none;
   justify-self: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
 }
 
 .app-nav button {
@@ -236,6 +263,13 @@ textarea {
   padding: 0.6rem 0.8rem;
   background: var(--surface);
   color: var(--ink);
+}
+
+select {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 textarea {
@@ -380,12 +414,17 @@ button.btn-icon:hover {
   display: grid;
   gap: 1rem;
   margin-top: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
 }
 
 .profile-info span {
   display: block;
   margin-bottom: 0.35rem;
+}
+
+.profile-info strong {
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .tabs {
@@ -399,6 +438,8 @@ button.btn-icon:hover {
   border: 1px solid var(--border);
   background: var(--surface);
   padding: 0.45rem 0.9rem;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 .tabs button.active {
@@ -755,6 +796,42 @@ button.btn-icon:hover {
   border-color: #b42318;
 }
 
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.alert strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.alert p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.alert-warning {
+  border-color: var(--warning);
+  background: var(--warning-bg);
+}
+
+.alert-warning strong {
+  color: var(--warning);
+}
+
+.alert-info {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.alert-info strong {
+  color: var(--accent-dark);
+}
+
 .checklist {
   list-style: none;
   padding: 0;
@@ -876,12 +953,12 @@ button.btn-icon:hover {
     display: none;
   }
 
-.table-row span {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.3rem 0;
-}
+  .table-row span {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0;
+  }
 
   .table-row span::before {
     content: attr(data-label);
@@ -898,5 +975,85 @@ button.btn-icon:hover {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .profile-info {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 1rem 1rem 0;
+  }
+
+  .app-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .app-main {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .tabs button {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .file-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .file-actions {
+    justify-content: stretch;
+  }
+
+  .file-actions button {
+    flex: 1;
+  }
+
+  .note-actions {
+    flex-direction: column;
+  }
+
+  .note-actions button {
+    width: 100%;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .alert {
+    padding: 0.85rem 1rem;
   }
 }

@@ -137,6 +137,12 @@ export default function ClinicalHistoryPage({ patient }: ClinicalHistoryPageProp
 
       <div className="card">
         <h3>{editingId ? "Editar nota" : "Nueva nota"}</h3>
+        {!selectedPatient?.id ? (
+          <div className="alert alert-warning">
+            <strong>Paciente no seleccionado</strong>
+            <p>Selecciona un paciente en la seccion superior para registrar notas clinicas.</p>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="stack">
           <label>
             <span className="label-text required">Notas clinicas</span>
@@ -161,6 +167,7 @@ export default function ClinicalHistoryPage({ patient }: ClinicalHistoryPageProp
             ) : null}
           </div>
         </form>
+        )}
         {error ? <p className="error">{error}</p> : null}
       </div>
 

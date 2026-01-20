@@ -220,54 +220,58 @@ export default function FilesPage({ patient }: FilesPageProps) {
 
       <div className="card">
         <h3>Nuevo archivo</h3>
-        <form onSubmit={handleSubmit} className="stack">
-          <label>
-            <span className="label-text required">Archivo</span>
-            <input
-              type="file"
-              accept="application/pdf,image/jpeg,image/png,image/webp"
-              onChange={(event) =>
-                setDraft((current) => ({ ...current, file: event.target.files?.[0] ?? null }))
-              }
-              disabled={!selectedPatient?.id}
-              className={fieldErrors.file ? "input-error" : ""}
-            />
-          </label>
-          {fieldErrors.file ? <span className="field-error">{fieldErrors.file}</span> : null}
-          {draft.file ? <p className="muted">Archivo seleccionado: {draft.file.name}</p> : null}
-          {!draft.file ? <p className="help">Solo PDF, JPG, PNG o WebP. Maximo 10MB.</p> : null}
-          <label>
-            <span className="label-text required">Descripcion breve</span>
-            <textarea
-              rows={3}
-              value={draft.description}
-              onChange={(event) =>
-                setDraft((current) => ({ ...current, description: event.target.value }))
-              }
-              placeholder="Ej: Resultado de laboratorio, receta, nota medica..."
-              disabled={!selectedPatient?.id}
-              className={fieldErrors.description ? "input-error" : ""}
-            />
-            <span className="help">Ayuda a encontrar el archivo rapidamente.</span>
-            {fieldErrors.description ? (
-              <span className="field-error">{fieldErrors.description}</span>
-            ) : null}
-          </label>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={draft.is_lab}
-              onChange={(event) =>
-                setDraft((current) => ({ ...current, is_lab: event.target.checked }))
-              }
-              disabled={!selectedPatient?.id}
-            />
-            Es resultado de laboratorio
-          </label>
-          <button type="submit" disabled={saving || !selectedPatient?.id}>
-            {saving ? "Subiendo..." : "Subir archivo"}
-          </button>
-        </form>
+        {!selectedPatient?.id ? (
+          <div className="alert alert-warning">
+            <strong>Paciente no seleccionado</strong>
+            <p>Selecciona un paciente en la seccion superior para poder subir archivos.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="stack">
+            <label>
+              <span className="label-text required">Archivo</span>
+              <input
+                type="file"
+                accept="application/pdf,image/jpeg,image/png,image/webp"
+                onChange={(event) =>
+                  setDraft((current) => ({ ...current, file: event.target.files?.[0] ?? null }))
+                }
+                className={fieldErrors.file ? "input-error" : ""}
+              />
+            </label>
+            {fieldErrors.file ? <span className="field-error">{fieldErrors.file}</span> : null}
+            {draft.file ? <p className="muted">Archivo seleccionado: {draft.file.name}</p> : null}
+            {!draft.file ? <p className="help">Solo PDF, JPG, PNG o WebP. Maximo 10MB.</p> : null}
+            <label>
+              <span className="label-text required">Descripcion breve</span>
+              <textarea
+                rows={3}
+                value={draft.description}
+                onChange={(event) =>
+                  setDraft((current) => ({ ...current, description: event.target.value }))
+                }
+                placeholder="Ej: Resultado de laboratorio, receta, nota medica..."
+                className={fieldErrors.description ? "input-error" : ""}
+              />
+              <span className="help">Ayuda a encontrar el archivo rapidamente.</span>
+              {fieldErrors.description ? (
+                <span className="field-error">{fieldErrors.description}</span>
+              ) : null}
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={draft.is_lab}
+                onChange={(event) =>
+                  setDraft((current) => ({ ...current, is_lab: event.target.checked }))
+                }
+              />
+              Es resultado de laboratorio
+            </label>
+            <button type="submit" disabled={saving}>
+              {saving ? "Subiendo..." : "Subir archivo"}
+            </button>
+          </form>
+        )}
         {error ? <p className="error">{error}</p> : null}
       </div>
 

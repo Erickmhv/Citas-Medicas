@@ -4,6 +4,7 @@ import { fetchPatientById } from "../lib/patients";
 import ClinicalHistoryPage from "./ClinicalHistoryPage";
 import AnthropometryPage from "./AnthropometryPage";
 import ConsultationsPage from "./ConsultationsPage";
+import LabResultsPage from "./LabResultsPage";
 import FilesPage from "./FilesPage";
 
 type PatientProfilePageProps = {
@@ -12,7 +13,24 @@ type PatientProfilePageProps = {
   onEdit: (patientId: string) => void;
 };
 
-type TabKey = "history" | "anthropometry" | "consultations" | "files";
+type TabKey = "history" | "anthropometry" | "consultations" | "lab-results" | "files";
+
+function formatSex(sex: string | null): string {
+  if (sex === "M") return "Masculino";
+  if (sex === "F") return "Femenino";
+  return "-";
+}
+
+function formatActivityLevel(level: string | null): string {
+  const labels: Record<string, string> = {
+    sedentary: "Sedentario",
+    light: "Ligeramente activo",
+    moderate: "Moderadamente activo",
+    active: "Muy activo",
+    very_active: "Extra activo",
+  };
+  return level ? labels[level] ?? "-" : "-";
+}
 
 export default function PatientProfilePage({ patientId, onBack, onEdit }: PatientProfilePageProps) {
   const [patient, setPatient] = useState<Patient | null>(null);
@@ -93,6 +111,14 @@ export default function PatientProfilePage({ patientId, onBack, onEdit }: Patien
             <span className="muted">Fecha de nacimiento</span>
             <strong>{patient.date_of_birth ?? "-"}</strong>
           </div>
+          <div>
+            <span className="muted">Sexo</span>
+            <strong>{formatSex(patient.sex)}</strong>
+          </div>
+          <div>
+            <span className="muted">Nivel de actividad</span>
+            <strong>{formatActivityLevel(patient.activity_level)}</strong>
+          </div>
         </div>
       </div>
 
@@ -121,6 +147,13 @@ export default function PatientProfilePage({ patientId, onBack, onEdit }: Patien
           </button>
           <button
             type="button"
+            className={tab === "lab-results" ? "active" : ""}
+            onClick={() => setTab("lab-results")}
+          >
+            Laboratorios
+          </button>
+          <button
+            type="button"
             className={tab === "files" ? "active" : ""}
             onClick={() => setTab("files")}
           >
@@ -132,6 +165,7 @@ export default function PatientProfilePage({ patientId, onBack, onEdit }: Patien
       {tab === "history" ? <ClinicalHistoryPage patient={patient} /> : null}
       {tab === "anthropometry" ? <AnthropometryPage patient={patient} /> : null}
       {tab === "consultations" ? <ConsultationsPage patient={patient} /> : null}
+      {tab === "lab-results" ? <LabResultsPage patient={patient} /> : null}
       {tab === "files" ? <FilesPage patient={patient} /> : null}
     </section>
   );
