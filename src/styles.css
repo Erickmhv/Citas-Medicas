@@ -110,7 +110,7 @@ button:not(.link):hover {
 }
 
 .app-header h1 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-bottom: 0.15rem;
 }
 
@@ -169,11 +169,11 @@ button:not(.link):hover {
 .app-nav button {
   border: 1px solid transparent;
   background: transparent;
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .app-nav button.active,
@@ -961,8 +961,8 @@ button.btn-icon:hover {
   }
 
   .menu-overlay .app-nav button {
-    font-size: 0.9rem;
-    padding: 0.55rem 0.8rem;
+    font-size: 1rem;
+    padding: 0.65rem 1rem;
   }
 
   .app-main {
@@ -1019,11 +1019,16 @@ button.btn-icon:hover {
 
 @media (max-width: 480px) {
   .app-header h1 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .app-header .muted {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .menu-overlay .app-nav button {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem;
   }
 
   .app-main {
@@ -1036,7 +1041,7 @@ button.btn-icon:hover {
   }
 
   .tabs button {
-    padding: 0.35rem 0.6rem;
+    padding: 0.4rem 0.7rem;
     font-size: 0.8rem;
   }
 
